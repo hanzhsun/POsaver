@@ -1,0 +1,1266 @@
+﻿@charset "utf-8";
+/* CSS Document */
+html,body{ margin:0; padding:0; height:100%;}
+body{font-family:'微軟正黑體',Verdana, Geneva, sans-serif; background:#fffef9;}
+.CONTAINER{ min-height:100%; padding-bottom:140px; position:relative; overflow:hidden; box-sizing:border-box;}
+a{ color:inherit; text-decoration:none; outline:none;}
+li{outline:none;}
+fieldset{ border:none; padding:0;}
+button,input[type=button]{ border:0; outline:none; font-family:'微軟正黑體'!important; font-size:inherit!important; padding:0 6px!important;}
+input:focus{ outline:none;}	
+h1{ color:#fffef9; font-size:30px; line-height:30px; height:30px; margin:0 auto; width:95%; max-width:1050px;}
+h2{ font-size:1.17em;}
+
+/*mini head*/
+.navbar { background:#f2f5f7; z-index:20; color:#666;}
+.left-nav{ float:left;}
+.right-nav{ float:right;}
+.navbar:after{ content:''; clear:both; display:block;}
+	.navbar ul{ margin:0; padding:0; list-style:none;}
+	.navbar li{ float:left; font-size:13px; line-height:30px; height:30px; border-right:1px solid #ddd;}
+	.navbar li.current{ background:#fff; padding:0 10px;}
+	.navbar a{ display:inline-block; padding:0 10px; font-size:13px;}
+	.navbar a:hover { background:#e7ecef;}
+	.navbar .member{ padding:0 10px;}
+	.navbar .member a { color:#000; text-decoration:underline; padding:0; margin-right:5px;}
+	.navbar .member a:hover { background:none; color:#378bd6;}
+	.navbar .member img{ width:24px; height:24px; border-radius:24px; vertical-align:middle; margin:0 5px 3px 0;}
+.panel{ position:relative;}
+.member_hotkey{ display:none; border-bottom:solid 1px #ccc;  z-index:99; width:100%; position:absolute; background-color:#fff;}
+.arrow-d{ display:inline-block; height:0; width:0; border-top:6px solid #666; border-left:3px solid transparent; border-right:3px solid transparent; margin-left:3px; }/*會員專區旁的向下三角形*/
+.member_hotkey:before{ content:''; display:block; position:absolute; height:100%; width:0; left:0px; top:0;}
+	.panel:hover .member_hotkey{ display:block;}
+	.member_hotkey li{ display:block; clear:both; text-align:center; width:100%; border-right:solid 1px #ccc;}
+	.member_hotkey a{ display:block;}
+.gre{color: #00b555;}
+.gre:hover{ text-decoration:underline;}
+.mo{ display:none;}
+
+
+/*header*/
+header{ background:#fff;}
+.H_wrapbox{ position:relative; width:100%; max-width:1050px; margin:0 auto; height:120px;text-align:center; }
+.logo{ position:absolute; left:0; top:13%; }
+.logo img{ width:100%;}
+.announce{ display:inline-block; background:url(../images/icon_announce.png) no-repeat 8px center; padding:0px 10px 0px 30px; border:1px solid #dfdfdf; color:#cc1867; font-size:0.875em; margin-top:55px; max-width:40%; overflow:hidden;  text-overflow:ellipsis; white-space:nowrap;}
+.announce a:hover{ border-bottom:1px solid;}
+.announce .swiper-wrapper{ line-height:30px; height:30px; text-align:left;}
+
+.search{ width:60%; max-width:240px; height:32px; position:absolute; right:0; top:55px; box-sizing:border-box;}
+	.search input[type=text]{border:1px solid #dfdfdf; border-radius:20px; height:32px; width:100%;padding:0 35px 0 15px; box-sizing:border-box;}
+	.search input[type=button]{ border:none; background:url(../images/icon_search.png); width:25px; height:28px; cursor:pointer; position:absolute; right:10px; top:2px;}
+nav{ background:#fa758a; z-index:20;}
+nav ul{ padding:0; margin:0 auto; box-sizing:border-box; width:100%; max-width:1050px; height:45px; line-height:45px;}
+	nav li{ margin:0 40px; list-style:none; display:inline-block; font-size:1.125em; color:#fff;  letter-spacing:1px; position:relative;}
+	nav a{ display:inline-block; padding:0 10px; font-weight:bold;}
+	nav li:hover:before{ content:''; display:block; height:40px; width:100%; position:absolute; bottom:0; left:0; background:#fffef9;}
+	nav a:hover{ color:#de1235; position:relative;}
+	nav li.current:before{ content:''; display:block; height:40px; width:100%; position:absolute; bottom:0; left:0; background:#fffef9;}
+	nav li.current a{ color:#de1235; position:relative;}
+	.N_close{ display:none;}
+		
+/*footer*/
+footer{ position:absolute; bottom:0; left:0; width:100%; text-align:center; background:#e4e1ce; font-size:13px;  color:#4d2104; padding:20px 0 15px 0;}
+footer a{ font-family: sans-serif; line-height:22px; white-space:nowrap; margin-bottom:5px;}
+footer a:after{ content:'|'; margin:0 15px;}
+footer a:last-child:after{ content:'';}
+	
+.content{ width:100%; max-width:1050px; margin:0 auto; overflow:hidden;}
+.c_left{ width:690px; float:left;}
+.c_right{ width:340px; float:right;}
+
+/* 首頁BN */
+.banner-wrap { width:95%; max-width:920px; margin: 0 auto 20px auto;}
+.banner-wrap img { max-width:100%!important; height: auto!important; _width:expression(this.width > 100 ? "100%" : this.width)!important;}
+
+/*麵包屑*/
+.breadcrumbs{ width:95%; max-width:1050px; margin:10px auto; font-size:0.8em; color:#676767;}
+.breadcrumbs a:after{ content:' > ';}
+.breadcrumbs a:hover{ color:#000;}
+.breadcrumbs span{ color:#dd2b2b;}
+
+
+/*塊狀書籍資訊樣式*/
+.B_wrapbox{ text-align:center;}
+.book{ background:#fff; padding:10px; box-sizing:border-box; min-width: 150px; text-align:left;}
+.book+.book{ margin-left:0.5%;}
+.book_cover{ margin-bottom:5px; max-width:190px;}
+.book_name{ overflow:hidden; white-space: nowrap; text-overflow: ellipsis; line-height:24px; font-size:0.95em;}
+.book_author{ overflow:hidden; white-space: nowrap; text-overflow: ellipsis; font-size:0.95em; color:#fa758a;}
+.book_cover img{ width:100%; border: 1px solid #eaeaea;}
+.book_cover:hover img{ opacity:0.7; transition:all 0.5s;}
+.book_name a:hover{ text-decoration:underline;}
+.book_author a:hover{text-decoration:underline;}
+img.lazy { display: block; width:170px; height:240px;}
+.fade-in {
+	opacity: 0;
+}
+.fade-in.lazyloaded {
+	opacity: 1;
+	transition: opacity 3000ms 500ms;
+}.fade-in.lazyloaded {
+	opacity: 1;
+	transition: opacity 3000ms 500ms;
+}
+/*橫式塊狀書籍樣式*/
+.row_book{ clear: both; overflow: hidden; background: #fff; padding: 10px; margin-bottom:20px;}
+.R_wrapbox{ width: calc( 100% - 130px); float: right;}
+.r_cover{ width:120px; float: left; margin-right: 10px;}
+.r_cover img{ width:100%;}
+.r_name{ overflow:hidden; white-space: nowrap; text-overflow: ellipsis;}
+.r_author{font-size:0.9em; color:#fa758a; overflow:hidden; white-space: nowrap; text-overflow: ellipsis;}
+.r_name a:hover{text-decoration:underline;}
+.r_author a:hover{text-decoration:underline;}
+.r_quote{ margin: 10px 0; font-size: 0.8em; color: #838383; line-height:17px; height:51px; overflow:hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;}
+
+
+/*條列式書籍資訊樣式*/
+.n_l{ overflow:hidden; border-left:3px solid #ffc1cb; border-bottom:1px solid #d2d9e2; padding:10px; transition:all 0.1s; background:#fff;}
+.n_l:hover{ border-left:10px solid #ffc1cb; transition:all 0.3s; background:#f7f7f7;}
+.n_l_1{ float:left; width:69%;}
+.n_l_2{ float:right; width:30%; text-align:right;}
+
+.book_l{ list-style:none; margin:0; width:49%; float:left; border-bottom:1px solid #d2d9e2; line-height:36px;}
+.book_l:nth-of-type(2n){ margin-left:10px;}
+
+.c_l{ list-style:none; margin:0; border-bottom:1px solid #d2d9e2; padding:10px 0; position: relative; background: #fff;text-align:left;}
+.c_l:after{ content:''; display:block; clear:both; height:0;}
+.o_l{ list-style: none; margin: 0; padding: 10px 15px; position: relative; overflow: hidden; background:#eaeaea;text-align:left;}
+
+.l_bookname{ overflow:hidden; white-space: nowrap; text-overflow: ellipsis; display:block; font-size:0.95em;}
+.l_author{ font-size:0.9em; color:#fa758a;overflow:hidden; white-space: nowrap; text-overflow: ellipsis; display:block;}
+.l_bookname:hover{ text-decoration:underline;}
+.l_author:hover{text-decoration:underline;}
+.l_chaptname{ font-size:0.9em; display:block; color:#838383;overflow:hidden; white-space: nowrap; text-overflow: ellipsis;}
+.l_date{font-size:0.8em; display:block; color:#838383;}
+.l_bookmark{ float: left;}
+.l_counter{ float: left; color:#f68aa2;}
+.l_btn{ float: left;}
+.l_check{ float: left; white-space: nowrap; font-size: 0.9em;color: #434343;}
+.l_check input[type=checkbox]{ margin-right: 5px;}
+.l_statu{ float: left;}
+.l_font {font-size:0.8em; color:#838383;}
+
+/*書籤*/
+.bookmark_yellow{ display: block; width:0; height: 0; border-top:10px solid #fffef9; border-right:10px solid #fae23f;border-bottom:10px solid #fae23f; border-left:10px solid #fffef9; }
+.bookmark_green{ display: block; width:0; height: 0; border-top:10px solid #fffef9; border-right:10px solid #64cb7e;border-bottom:10px solid #64cb7e; border-left:10px solid #fffef9; }
+.B_content{ display:none; position:absolute; width:300px; left:45px; top:0px; padding:10px; line-height:1.35; border-radius:5px; font-size:13px; color:#fff; background-color:rgba(0,0,0,0.9);}
+.B_content:before{ content:''; display:block; position:absolute; top:12px; left:-10px; border-right:10px solid rgba(0,0,0,0.9);border-top:6px solid transparent;border-bottom:6px solid transparent;}
+[class^=bookmark]:hover+.B_content{ display:block; z-index:15;}
+
+/*頁碼*/
+.page{ clear:both; text-align: center; margin-bottom: 30px;}
+.page span{display: inline-block; width:30px; height: 30px; line-height: 30px; margin:5px; border: 1px solid #c5c5c5; color: #c5c5c5; box-sizing:border-box;}
+.page a{display: inline-block; width:30px; height: 30px; line-height: 30px; margin:5px; border: 1px solid #cdc9bb; color:#cdc9bb ;box-sizing:border-box;}
+.page .num:hover{ color:#fff; background:#cdc9bb;  border: 1px solid #cdc9bb;}
+.page .current{ background: #fff; color:#d59c38; border: 1px solid #d59c38; }
+
+a.first{ background: url(../images/page.png) no-repeat 0 -29px; text-indent: -9999px;}
+a.flirst:hover{ background-position: 0 0px;}
+span.first{ background: url(../images/page.png) no-repeat 0 -58px; text-indent: -9999px;}
+a.previous{ background: url(../images/page.png) no-repeat -39px -29px; text-indent: -9999px;}
+a.previous:hover{ background-position: -39px 0px;}
+span.previous{ background: url(../images/page.png) no-repeat -39px -58px; text-indent: -9999px;}
+a.next{ background: url(../images/page.png) no-repeat -78px -29px; text-indent: -9999px;}
+a.next:hover{ background-position: -78px 0px;}
+span.next{ background: url(../images/page.png) no-repeat -78px -58px; text-indent: -9999px;}
+a.last{ background: url(../images/page.png) no-repeat -117px -29px; text-indent: -9999px;}
+a.last:hover{ background-position: -117px 0px;}
+span.last{ background: url(../images/page.png) no-repeat -117px -58px; text-indent: -9999px;}
+
+/*排行榜樣式*/
+ol.ranking{padding:0; margin:0; counter-reset: rank;}
+ol.ranking li{  clear:both; overflow:hidden; padding-left:35px; position:relative; box-sizing:border-box; border-bottom:1px solid #d2d9e2;}
+.ranking li:before{ counter-increment: rank; content:counter(rank); width:25px; text-align:center;  position:absolute; left:0;top:0;font-size:0.9em; color:#dd2b2b; font-weight:bold; line-height:45px;}
+	.ranking .book_cover{ display:block; float:left; width: 75px; margin:0 10px 0 0;}
+	.ranking .book_name{ display:block; width:64%;float:left; line-height:45px; margin-right:1%;}
+	.ranking .book_author{display:block; width:35%; line-height:45px; color: #fa758a;}
+	.ranking .book_name:hover{ text-decoration:underline;}
+	.ranking .book_author:hover{ text-decoration:underline;}
+	.ranking li.R_cover { padding:10px 0; min-height:132px;}
+	.ranking li.R_cover .book_name{ width: calc( 100% - 100px); line-height:18px; white-space:normal;}
+	.ranking li.R_cover .book_author{ width: calc( 100% - 100px); line-height:18px; margin-bottom:5px; white-space:normal;}
+	.ranking li.R_cover .book_quote{ display:block; width: calc( 100% - 100px); font-size:0.9em; color:#838383; line-height:16px; height:32px; overflow:hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;  }
+	.ranking li.R_cover:before{ color:#fff; position:absolute; width:13px; height:13px; z-index:10; font-size:13px; line-height:13px; left:4px; top:12px;}
+	.ranking li.R_cover:after{ content:''; display:block; z-index:9; top:10px; left:0;}
+	.ranking li.R_cover:nth-of-type(1):after{ border-top:15px solid #00a2ff; border-left:15px solid #00a2ff; border-right:15px solid transparent; border-bottom:15px solid transparent; position:absolute;}
+	.ranking li.R_cover:nth-of-type(2):after{ border-top:15px solid #32cbe7; border-left:15px solid #32cbe7; border-right:15px solid transparent; border-bottom:15px solid transparent; position:absolute;}
+	.ranking li.R_cover:nth-of-type(3):after{ border-top:15px solid #1ad28f; border-left:15px solid #1ad28f; border-right:15px solid transparent; border-bottom:15px solid transparent; position:absolute;}
+
+
+
+/*按鈕區*/
+input[type=button],input[type=submit]{ outline:none; border:0; cursor:pointer; font-family:'微軟正黑體',Verdana, Geneva, sans-serif; font-size:1em;}
+.btn_more{display:block; width:100%; border-radius:5px; line-height:40px; height:40px; text-align:center; background:#e1e0db; color:#706f67; font-size:15px;}
+.btn_more:hover{ background:#c1c1c1; transition:all 0.3s;}
+	.c_left .btn_more{ color:#706f67; background:#e4e1ce;}
+	.c_left .btn_more:hover{ background:#d6d3c0;}
+.btn_blue{ display:block; background:#30b3c6; color:#fff; border-radius:5px; height:45px; text-align:center; line-height:45px;}
+.btn_blue:hover{ background:#1b95a7; transition:all 0.3s;}
+.btn_red{ display:block; background:#dd2b2b;color:#fff;border-radius:5px;height:45px; text-align:center; line-height:45px;}
+.btn_red:hover{ background:#b51515;transition:all 0.3s;}
+.btn_pulp{ display:block; background:#586199;color:#fff;border-radius:5px;height:45px; text-align:center; line-height:45px;}
+.btn_pulp:hover{ background:#424b83;transition:all 0.3s;}
+.btn_gray{ display:block; background: #878787; color:#fff; border-radius:5px; height:45px; text-align:center; line-height:45px;}
+.btn_gray:hover{ background: #666; transition:all 0.3s;}
+.btn_tan{ display:block; background: #e4e1ce; color:#706f67; border-radius:5px; height:45px; text-align:center; line-height:45px;}
+.btn_tan:hover{ background: #d2cdad; transition:all 0.3s;}
+.btn_noFunc{  display:block; color:#adbed6; background:#dae5f4; border:1px solid;border-radius:5px;  height:45px; text-align:center; line-height:45px; box-sizing:border-box;}
+.btn_func{ display:inline-block; text-align:center; font-size:1em; background:#495b75; height:35px; line-height:35px; color:#fff; border-radius:2px; width:150px;}
+.btn_func:hover{ background:#666; transition:all 0.3s;}
+.btn_L_red{ display: block;color: #dd2b2b; width:130px; height: 40px; text-align: center; line-height: 40px; border: 1px solid; border-radius:5px;}
+.btn_L_red:hover{ background: #fff2f2;}
+.btn_L_blue{ display: block;color: #30b3c6; width:130px; height: 40px; text-align: center; line-height: 40px; border: 1px solid; border-radius:5px;}
+.btn_L_blue:hover{  background: #e0f3f6;}
+.btn_L_gray{ display: block;color: #878787; width:130px; height: 40px; text-align: center; line-height: 40px; border: 1px solid; border-radius:5px;}
+.btn_L_gray:hover{ background: #ededed; }
+.btn_donate{ display:inline-block; background:#3498ff; color:#fff; font-size:0.9em; border-radius:5px; width:80px; height:32px; line-height:32px; text-align:center;}
+.btn_donate:hover{ background:#2079d4; transition:all 0.3s;}
+.book_name .btn_donate{ border:1px solid #3498ff; background:#fff; color: #3498ff; font-weight:bold; font-size:0.8em; width:65px; height:24px; line-height:24px; margin-left:10px;}/*因應贊助鍵的出現，如最後選擇不在此出現，請拿掉*/ 
+.book_name .btn_donate:hover{ color:#2079d4; transition:all 0.3s; text-decoration:none;}/*因應贊助鍵的出現，如最後選擇不在此出現，請拿掉*/ 
+
+.toolbar{ margin:10px 0;}
+.toolbar a{width:125px; display:inline-block; margin:0 5px 10px 0; font-size:15px; text-align:center; height:45px; line-height:45px; border-radius: 5px;}
+.toolbar [class^=btn]{ min-width:125px; display:inline-block; margin:0 5px 10px 0; font-size:15px; text-align:center; height:45px; line-height:45px; border-radius: 5px;}
+
+
+/*編輯推薦*/
+.editor_recom{ width:95%; max-width:1000px; margin:0 auto 30px auto; text-align:center;}
+.editor_recom h2{ text-align:left; margin:0 0 20px 0;}
+.editor_recom .book{ background:#fff; padding:15px; display:inline-block; text-align:left; width:220px;}
+.editor_recom .book+.book{ margin-left:0;}
+	.editor_recom .book_name{ font-size:1.2em;line-height:32px; font-weight:bold;}
+	.editor_recom .book_author{ font-size:1em; font-weight:bold;}
+
+/*讀者推薦*/
+.reader_recom{ overflow:hidden; margin-bottom:30px;}
+.reader_recom h2{ border-bottom:1px solid #cc1867; line-height:40px;}
+.reader_recom .book{ display:inline-block; width:24%; max-width:165px; min-width:100px; margin-bottom:20px; }
+.reader_recom .book .book_cover{ overflow:hidden;}
+.reader_recom .book .book_cover a{ display:block; width:100%; padding-top:140%;}
+.reader_recom .book .book_cover a img{ position:absolute; top:0; left:0;}
+.reader_recom_list{}
+.recom_list{ padding:0; margin:0 0 20px 0; overflow:hidden;}
+.book_l .l_bookname{ width:70%; float:left;  }
+.book_l .l_author{ float:right; text-align:right; width:30%; }
+
+/*潛力新書*/
+.potential{ overflow:hidden; margin-bottom:30px;}
+.potential h2{ border-bottom:1px solid #cc1867; line-height:40px;}
+.potential .book{ display:inline-block; width:24%; max-width:165px; margin-bottom:20px; min-width:100px;}
+.potential  .book .book_cover{ overflow:hidden;}
+.potential .book .book_cover a{ display:block; width:100%; padding-top:140%;}
+.potential .book .book_cover a img{ position:absolute; top:0; left:0;}
+.potential_list{}
+.book_list{ padding:0; margin:0 0 20px 0; overflow:hidden;}
+
+
+/*近期更新*/
+.newest{ margin-bottom:30px;}
+.newest h2{ border-bottom:1px solid #cc1867; line-height:40px;}
+.newest_list:after{ clear:both;}
+	.newest .l_bookname{ float:none; line-height:28px; display:block; width:100%;}
+	.newest .l_author{ float:none; line-height:28px; display:block; width:100%;}
+
+/*標籤*/
+.tags{ margin-bottom:30px;}
+.tags h2{ border-bottom:1px solid #cc1867; line-height:40px;}
+.tag{ border:1px solid #d2d2d2; border-radius:2px; padding:5px 12px; margin:0 5px 10px 0; font-size:0.95em; display:inline-block; font-weight:bold;}
+.t_type1{ color:#f15f17;}
+.t_type2{ color:#336ad9;}
+.t_type3{ color:#0ecb8f;}
+.t_type4{ color:#999;}
+.t_type1:hover{ background:#f15f17; color:#fff; border-color:#f15f17;}
+.t_type2:hover{ background:#336ad9; color:#fff; border-color:#336ad9;}
+.t_type3:hover{ background:#0ecb8f; color:#fff; border-color:#0ecb8f;}
+.t_type4:hover{ background:#999; color:#fff; border-color:#999;}
+
+/*暢銷訂購日榜*/
+.sell_rank_D{ margin-bottom:30px;}
+.sell_rank_D h2{ border-bottom:1px solid #cc1867; line-height:40px; margin-bottom:0;}
+
+/*暢銷訂購月榜*/
+.sell_rank_M{ margin-bottom:30px;}
+.sell_rank_M h2{ border-bottom:1px solid #cc1867; line-height:40px; margin-bottom:0;}
+
+/*書籍資訊*/
+.book_detail{ background:#fff; padding:20px 15px;}
+.book_detail:after{ content:''; clear:both; display:block;}
+.book_detail h1{ height:auto; margin:0;}
+.book_detail h2{ margin:0; font-size:1em; }
+	.book_detail .book_cover{ width: 180px; max-height: 254px; float:left;}
+	.book_detail .book_name{ overflow:initial; width:100%; box-sizing:border-box; font-size:1.2em; line-height:1.35; color:#fa758a; font-weight:bold; white-space:normal;}
+	.book_detail .book_author{ font-size:1em; white-space:normal; color:#838383;}
+	.book_detail .book_author:hover{ text-decoration:underline;}
+.book_info{ width:calc( 100% - 200px);}
+.book_info_list:after{ content:''; display:block; clear:both;}
+.book_info_list dt{ display:block; float:left; width:120px; color:#838383; font-size:0.9em; margin:5px 0; line-height:18px;}
+.book_info_list dd{ display:block; float:left; width:calc( 100% - 120px); font-size:1em; margin:5px 0; line-height:18px; min-height:18px; position:relative;}
+
+dd.statu{ font-size:0.9em;}
+dd.statu span{font-size:0.9em; color:#838383;}
+dd.price{ color:#3498ff;font-weight:bold;}
+	img[src="images/coin.png"]{vertical-align:middle;}
+dd.discount{color:#3498ff;font-weight:bold;}
+.compete_area { position:relative; text-align:left;}
+	.compete_area .tip { position: absolute; left:0; top:0; border-radius: 5px; border: 1px solid #9dcee9; width: 300px; padding: 10px; z-index:2; background: #e0f4ff;color: #555; font-size: 14px; text-align:left;}
+	.compete_area h4 {color: #555; font-size: 14px; margin:0;}
+	.compete_area ul{ margin:0; padding-left:20px;}
+	.icon_compete{ background:url(../images/icon-award.png) no-repeat center; width: 28px; height: 37px; background-size: 28px 37px; cursor:pointer; position: absolute; left: 2px; bottom: -11px;}
+	.R-rated{ position:relative;}
+	.R-rated:after { content: '';display: block; position: absolute; top: 5px; left: 5px; z-index: 10; width: 35px; height: 35px; background: url(../images/icon_18.png) no-repeat;}
+	.book_data{ width: 32%; display: inline-block; font-size: 12px; vertical-align: top;}
+	.book_data th{ text-align:left; background:#a2a2a2; color:#fff; padding:0 5px; font-weight:normal; width:48px;}
+	.vote{ margin:15px 0;}
+	.voting{ display:inline-block; vertical-align: middle;}
+	.star{ background:url(../images/share.png) 0px 0px; display:block; width:18px; height:18px; line-height:32px;float:left;margin-right:3px;}
+	.lighton{background-position:-30px 0px;}
+	.pearl{ display:inline-block; vertical-align: middle; margin:0 15px; font-size:22px; color:#dce2e7 ;line-height:32px; }
+	.spear{ display:inline-block; vertical-align: middle; line-height:30px; font-size:22px;color:#dce2e7;}
+	.pearl:before{content:''; display:inline-block; width:30px; height:32px; vertical-align: middle; background:url(../images/share.png) 0px -32px no-repeat;}
+	/*.pearl:hover{ background-position:-62px -32px; color:#a7bfe1;}*/
+	.spear:before{ content:''; display:inline-block; width:35px; height:30px; vertical-align: middle; background:url(../images/share.png) 0px -84px no-repeat;}
+	/*.spear:hover{ background-position:-75px -84px; color:#a7bfe1;}*/
+	.book_data td{ padding:0 5px; color:#a2a2a2;}
+	.author_detail .l_bookname{ float:none; display:block; width:100%;}
+/*書籍交易提醒*/
+.msg_offsell{ background-color:#000; color:#fff; padding:10px 15px; font-size:0.9em;}
+.msg_Note{ background-color:#f3a583; color:#fff; padding:10px 15px; text-align:center; font-size:0.9em;}
+.msg_onsale{ background-color:#f27943;color:#fff;padding:10px 15px;font-size:0.9em;}
+	.msg_onsale strong{ color:#fff60a; margin:0 5px; font-weight: bold;}
+.msg_lastChapt{display:block; background:#7ba9e9; color:#fff; padding:10px 15px;font-size:0.9em;}
+.msg_lastChapt:before{ content:'最後閱讀：';}
+.msg_lastChapt a:hover{ text-decoration:underline;}
+/*內容簡介*/
+.book_intro h3{border-bottom:1px solid #cc1867; line-height:40px;}
+/*書籍標籤*/
+.book_intro_tags{ margin:30px 0 50px 0;}
+.book_intro_tags .tag{ color:#e11878; border-color:#ffc1cb;}
+.book_intro_tags .tag:hover{ background:#e11878; color:#fff; transition:all 0.3s;}
+/*最新章回*/
+.C_wrapbox{ padding: 10px;}
+.free_chapter{ background:#fff;position:relative; overflow:hidden; color:#838383; font-size:0.9em; margin-bottom:30px; }
+	.free_chapter h4{ margin:5px 0 20px 0; font-size:1.2em; color: #dd2b2b; width: calc(100% - 150px);}
+	.free_chapter .date{ position:absolute; right:15px;top:15px; font-size:0.7em; color:#999;}
+	.free_chapter .fontnum { position:absolute; right:15px;top:32px; font-size:0.7em; color:#999;}
+	.free_chapter .bname{ color:#378bd6;}
+.chapter_img{ width:115px; height:115px; overflow:hidden; margin:0 15px 10px 10px; float:left;}
+	.chapter_img img{width:100%;}
+	.free_chapter .btn_blue{ clear:both; font-size:16px;}
+	.pay_chapter .btn_red{  clear:both; font-size:16px;}
+.pay_chapter{ background:#f3a583; color:#fff; text-align:center;font-size:1.2em; margin-bottom:30px; }
+	.pay_chapter .C_wrapbox{ padding: 20px 10px;}
+
+/*關注本書讀者還關注*/
+.also_follow{ margin-bottom: 30px;}
+.also_follow h3{border-bottom:1px solid #cc1867; line-height:40px;}
+
+
+/*其他熱門作品*/
+.hottest{ margin-bottom:30px;}
+.hottest h3{ border-bottom:1px solid #cc1867; line-height:40px;}
+
+.donate_list ul{list-style:none; padding:0; margin:0;}
+.donate_list li{ width:100%;}
+.donate_list .member{ display:inline-block; margin-right:8px; color: #fa758a; vertical-align:top;}
+.donate_list .price{ display:inline-block; margin-left:8px; vertical-align:top; word-break:break-all;}
+/*贊助列表-側欄*/
+.donate{ margin-bottom:30px; border:2px solid #fa758a; background:#fff; box-sizing:border-box; font-size:0.9em; text-align:center; color:#838383;}
+.donate h3{ margin:10px 0 0 0; line-height:40px; text-align:center; color: #fa758a;}
+.donate_content{ padding-bottom:10px;}
+.donate_content p{font-size:1.1em; margin:0 0 15px 0; color:#000;}
+.donate .member{ max-width:calc(100% - 170px); overflow:hidden; text-overflow:ellipsis; white-space: nowrap;}
+.donate .price{ max-width:100px; overflow:hidden; text-overflow:ellipsis; white-space: nowrap;}
+.donate_content .price{ max-width:100%; font-size:1.1em; display:block; padding-left:15px;}
+.donate .donate_list{color:#000; border-top:1px solid #fa758a; padding:10px 0; margin:0 20px; }
+.tr-marquee { height:120px; line-height:24px; position: relative;  z-index: 1; overflow: hidden;}
+.tr-marquee ul { position: absolute; width:100%;}
+.tr-marquee ul li{overflow: hidden;}
+.donate .btn_more{ background: #fa758a; color:#fff; border-radius:0; }
+/*贊助列表頁*/
+.donate_more{ width:95%; max-width:1050px; margin:0 auto; padding-bottom:50px;}
+.donate_more .book_cover{width:90px;}
+.donate_more .book_info{width: calc( 100% - 100px);}
+.income{font-size: 1.1em; font-weight: bold; color: #434343; margin: 30px 0 0 0; text-align:center;}
+.income_note{font-size:0.8em; text-align: center; color: #838383; margin: 0 0 30px 0;}
+.donate_more li{ border-bottom:1px solid #e6e8ed; padding:5px 0;}
+.donate_more .member{ width:calc(100% - 300px);}
+.donate_more .price{  width:100px;text-align:right;}
+.donate_more .l_date{ display:inline-block; text-align:right; width:130px;}
+/*贊助頁*/
+.donate_page{ width:95%; max-width:1050px; margin:0 auto; padding-bottom:50px;}
+label.disc_money{ display:inline-block; position:relative; width:100px; height:27px; text-align:center; cursor:pointer; margin:0px 5px 15px 5px;}
+.disc_money span{ display:block; width:100px; height:27px; line-height:27px; position:absolute; top:0;left:0; background:#f1ebd4; border-radius:5px; white-space: nowrap;}
+.disc_money input[type="radio"]:checked + span{ background:#f4bd38;}
+.donate_page dl{ clear:both;}
+.donate_page dt{ float:left; width:80px; line-height:27px;}
+.donate_page dd{ float:left; margin:0; width:calc( 100% - 80px);}
+.donate_page .toolbar{ margin-top:20px; text-align:center;}
+.donate_page ol{ margin:5px 0 20px 0; padding:0 0 0 18px;}
+.donate_page li{ margin:0 0 5px 0;}
+/*贊助結果頁*/
+.donate_succeed{ width:95%; max-width:1050px; margin:0 auto; padding:50px 0; text-align:center;}
+.txt b{ color:#dd2b2b;}
+
+
+
+
+/*章回列表*/
+.chapter_list{margin-bottom: 30px;}
+.chapter_list h3{border-bottom:1px solid #cc1867; line-height:40px;}
+.chapter_list .l_bookmark{width:30px; height:30px;}
+.chapter_list [class^=bookmark]{ position: absolute;top:0; left: 0;}
+.chapter_list .l_counter{width:9%; margin-top: 14px; box-sizing: border-box;}
+.chapter_list .l_chaptname{ white-space: normal; color: #000;  float: left; width:34%; margin-top: 14px;font-size: 1em;}
+.chapter_list .l_date{ float: left; width:23%; margin-top: 14px; padding-left: 10px; box-sizing: border-box;}
+.chapter_list .l_btn{ width:15%;}
+.chapter_list .l_font{ float: left; width:12%; margin-top: 14px;}
+
+/*多筆訂購*/
+.order{ width:95%; max-width:1050px; margin:0 auto;}
+.order .book_cover{width:90px;}
+.order .book_info{width: calc( 100% - 100px);}
+.wallet{ font-size: 1.1em; font-weight: bold; color: #434343; text-align: center; margin: 30px 0;}
+.notice{ color: #636363; border: 1px solid; font-size: 0.9em;  margin-bottom: 30px;}
+.notice legend{ padding: 0 10px;}
+.order_list{ margin-bottom:30px;}
+.order_list .c_l{ padding: 15px; line-height: 20px;}
+.order_list .c_l:hover{ background:#f7f7f7;}
+.order_list .l_check{ width:4%;}
+.order_list .l_chaptname{ white-space: normal; color: #000;  float: left; width:58%; font-size: 1em;}
+.order_list .l_date{ float: left; width:15%; padding-left: 15px; box-sizing: border-box;}
+.order_list .l_statu{ width:12%; text-align: right;}
+.order_list .l_btn{ width:50%; float: right;text-align: right;}
+.order_list .l_font { float: left; width:8%; padding-left: 15px; box-sizing: border-box;}
+.order_list .btn_L_gray{ display: inline-block; margin-right: 15px;}
+.order_list .btn_L_red{display: inline-block;}
+.o_l .l_check{ margin-top: 14px;}
+.price{ color:#dd2b2b;}
+.free{ color: #30b3c6;}
+.checkout{ text-align:right; font-size:0.9em; line-height:28px; margin-bottom:10px;}
+.checkout .price{ font-size:1.1em; font-weight:bold;}
+
+
+/*留言區*/
+.comments{ margin-bottom: 30px;}
+.comments_wrap{ overflow:hidden;}
+.log{ text-align:center; margin:10px 0; font-size:0.9em; color:#ab8f96;}
+.log a{ color:#fa758a; font-weight:bold;}
+.log a:hover{ text-decoration: underline;}
+.log .btn_func{ color:#fff; font-weight:normal;}
+.log .btn_func:hover{ text-decoration: none;}
+.comments h3{border-bottom:1px solid #cc1867; line-height:40px;}
+.comments h3 span{ color:#ab9096;}
+.C_msg{ font-size:0.9em; box-sizing:border-box;text-align:left; position:relative;}
+.C_title{ font-weight: bold; margin:0 0 10px 0; color:#565656;}
+.C_img{ margin-bottom:10px;}
+.C_box{ padding:15px; margin-bottom:5px; min-height:90px; color:#333;}
+.C_date{ clear:both; font-size: 0.8em; color:#838383; line-height: 24px;}
+.C_list_reader{ clear:both; margin-bottom:30px;}
+.C_list_reader:after{ content:''; display:block; clear:both;}
+.C_list_author{ clear:both; width:70%; float:right; margin-bottom:30px;}
+.C_member{ width:90px; float:left; color:#fa758a; font-size:0.9em;}
+.C_member img{ display:block; width:100%; margin-bottom:5px;}
+	.C_list_reader .C_msg{ width:calc( 100% - 110px); float:right;}
+	.C_list_reader .C_msg:before{ display:block; content:''; border-top:10px solid #fff; border-right:5px solid #fff; border-left:5px solid transparent; border-bottom:10px solid transparent; position:absolute; top:0; left:-10px;}
+	.C_list_reader .C_box{ background:#fff;}
+	.C_list_author .C_msg{ margin-right:10px;}
+	.C_list_author .C_msg:before{ display:block; content:''; border-top:10px solid #fffbe5; border-left:5px solid #fffbe5; border-right:5px solid transparent; border-bottom:10px solid transparent; position:absolute; top:0; right:-10px;}
+	.C_list_author .C_box{background: #fffbe5; min-height:auto;}
+.C_func{ color:#f6c8d2; line-height:20px;}
+.C_func a{ color:#ab9096;}
+.C_func a:hover{ color:#7e3243;}
+.C_func .date{ color:#ab9096; float:right; font-size:0.9em;}
+.form_line{ margin-bottom:10px;}
+.comments .btn_more{ background:#dd92a3; color:#fff;}
+.comments .btn_more:hover{ background:#b1b1b1;}
+.comments input[type=text]{ color:#636363; border: 1px solid; border-radius: 5px; height: 32px; line-height:32px; width: 100%;  padding: 0 10px;  box-sizing: border-box;}
+.comments textarea{ resize:none; width:100%; box-sizing: border-box;}
+.comments .simple_captcha_image{ width:110px; float:left; margin-right:10px;}
+.comments .simple_captcha_field{ width:calc( 100% - 120px);float:left;}
+.comments .simple_captcha_field a{ text-decoration:underline; margin-bottom:5px; display:inline-block;}
+.comments .simple_captcha_field a:hover{ text-decoration:none;}
+#Leave_comment .btn_func{ margin:30px 0;}
+.msg_donate{ color:#3498ff;}
+.msg_donate:before{ content:'打賞'; display:inline-block; padding:0 5px; border:1px solid #3498ff; font-size:12px; line-height:16px; margin-right:10px;}
+.msg_donate .member{margin-right:5px;}
+.msg_donate .book_name{ margin:0 5px;}
+.msg_donate .book_name:before{content:'《';}
+.msg_donate .book_name:after{ content:'》';}
+
+/*作家資訊*/
+.author_img{ width:200px; height: 200px;overflow:hidden; }
+	.author_img img{ width:100%;}
+.author_name{  color:#fa758a; font-size:1em; line-height: 22px; margin:0 auto 5px auto; word-wrap: break-word;    height: auto; width: 100%;}
+.author_name a:hover{ color:#000;}
+.author_speaking{ font-size: 0.9em;}
+.author_intro{ font-size: 0.9em;}
+
+.author_detail{ background-color:#fff; margin-bottom: 30px;}
+.author_detail h3{color:#c3c2be; margin-left: 10px;}
+	.author_detail .author_img{ border-radius:100px; width:135px; height:135px; margin:0 auto 10px auto;}
+	.author_detail .author_name{ text-align:center;width:95%;}
+	.author_detail .author_speaking{width:95%; margin: 0 auto; text-align:center; line-height:20px; height:40px; overflow:hidden; font-size: 0.9em;}
+.author_info{ width:95%; max-width: 1050px; margin: 0 auto 30px auto; background: #fff; box-sizing: border-box; padding: 25px 20px; overflow: hidden;}
+.author_info .author_intro{ padding-bottom: 15px; border-bottom: 1px solid #fae476; margin-bottom: 15px;}
+	.A_info{ float: left; width:80%; max-width: 200px; margin-right: 20px;}
+	.A_intro{ float: left; width: calc( 100% - 220px);}
+	.A_intro h4{ margin: 0; color: #959595;}
+	.A_info .author_img{ margin-bottom: 10px;}
+.author_info .toolbar{ text-align: center;}
+
+/*作者作品列表*/
+.work_list{ margin-bottom: 30px;}
+.work_list h2{border-bottom:1px solid #cc1867; line-height:40px;}
+.works{ margin-bottom:25px;}
+.work_list dl{ margin: 10px 0;}
+.work_list dt{ width:80px;}
+.work_list dd{ font-size: 0.9em; width:calc( 100% - 90px);}
+	dd.chapter {   overflow: hidden;white-space: nowrap; text-overflow: ellipsis; min-height:20px;}
+	dd.chapter a{}
+	dd.chapter a:hover{ text-decoration: underline;}
+.work_list dd.intro{ color:#838383; line-height: 18px; height:54px; overflow:hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;}
+.work_list .book_detail{padding: 20px 15px 10px 15px;}
+.work_list .book_cover{ width:170px;}
+.work_list .book_info{ width:calc( 100% - 190px);}
+.book_func{ display: flex;}
+.book_func [class^=btn]{ flex: 1; border-radius: 0;border: none;}
+.book_func [class^=btn]+[class^=btn]{ margin-left: 3px;}
+
+/*讀者回應*/
+.all_comments{ margin-bottom: 30px;}
+.all_comments h2{border-bottom:1px solid #cc1867; line-height:40px; margin-bottom: 0;}
+.comment_list{ padding:20px 0; border-bottom: 1px solid #d2d9e2;}
+.msg_wrapbox{ width:calc(100% - 80px); display:inline-block; box-sizing: border-box; background: #fff; border: 1px solid #fced9c; padding:9px; position: relative; margin-right:5px; color:#333;}
+.msg_wrapbox:after{ position: absolute; display: block; content: ''; background: url(../images/msg.png) no-repeat; width:17px; height: 11px; right: -1px; bottom:-11px;}
+.mask{ display: block; overflow: hidden; line-height: 20px; height: 40px; display: -webkit-box; -webkit-line-clamp:2; -webkit-box-orient: vertical;}
+.member_img{ width:70px; height: 70px; display:inline-block; vertical-align:bottom; margin-bottom:-9px;}
+	.member_img img{ width:100%;}
+.C_at{margin-bottom: 5px; font-size: 0.9em; line-height: 24px; font-weight: bold; overflow: hidden;}
+.C_at .member_name{ display:inline-block; width:51%; /*text-overflow: ellipsis; overflow: hidden; white-space: nowrap;*/ vertical-align: middle;}
+.C_at .book_name{  display:inline-block; margin-left:1%; width:45%; text-align: right; color:#fa758a;text-overflow: ellipsis; overflow: hidden; white-space: nowrap; vertical-align: middle; }
+.C_at .book_name:before{ content: '@';}
+
+/*書籍讀者回應*/
+.book_comments{ width:95%; max-width:1050px; margin:0 auto 30px auto; }
+.book_comments h1{ font-size:1.17em; color:#000; width:100%; border-bottom:1px solid #cc1867; line-height:40px; margin-bottom:30px; height:auto;}
+.book_comments .book{ width: 170px; float:left; padding:0;}
+.book_comments .book_name{ color: #fa758a; font-size:1em; white-space:normal;}
+.book_comment {border-bottom: 1px solid #d2d9e2; overflow:hidden; padding-bottom:30px; margin-bottom:30px;}
+.book_comments .msg_wrapbox{ min-height:60px;}
+.Comment_wrapbox{ float:right; width:calc( 100% - 190px);}
+.B_C_list{ margin-bottom:10px;}
+	.B_C_list .member_name{ width:calc( 100% - 80px); white-space: normal; line-height: 18px;}
+.B_R_list{ margin:20px 0 30px 0;}
+	.B_R_list .author_name{ margin:0; display:block; width:calc( 100% - 80px); line-height:18px; }
+	.B_R_list .author_name:after{ content:'回覆:'; margin-left:5px; font-size:0.9em;}
+	.B_R_list .msg_wrapbox{ background:#fffde9; color:#000;}
+	.B_R_list .msg_wrapbox:after{ background: url(../images/reply.png) no-repeat; right:auto;left:0; bottom: -11px;}
+	.book_comment .btn_more{ max-width:350px; margin:30px auto 0 auto;}
+	
+/*搜尋頁*/
+.search_result{ font-weight:bold;}
+.search_result a{ display:inline-block; margin:0 0 0 10px; padding:2px 5px; border:1px solid transparent;}
+.search_result a:hover{color:#dd2b2b; border:1px solid; border-radius:2px;}
+.search_result a.current{color:#dd2b2b; border:1px solid; border-radius:2px;}
+.result_list h2{ color:#ab9096; border-bottom:1px solid #cc1867; line-height:40px; margin-bottom:30px;}
+.result_list h2 span{ color:#000; margin:0 5px;}
+.NO_result{ font-size:1.3em; text-align:center; font-weight:bold; color:#a7a7a7;}
+.search_result{ width:95%; max-width:1050px; margin:0 auto 30px auto;}
+.search_author{ width:95%; max-width:1050px; margin:0 auto 30px auto;}
+.result_list{ width:95%; max-width:1050px; margin:0 auto 30px auto; }
+	.result_list .book_name{ white-space:normal; font-size:1em;}
+	.result_list .book_cover{ width:125px; float:left;}
+	.result_list .author_img{ width:125px; height:125px; float:left; margin-bottom:5px;}
+	.Finished{ position:relative;}
+	.Finished:after{ content: '';display: block; position: absolute; top: 5px; left: 5px; z-index: 10; width: 19px; height: 27px; background: url(../images/icon_finish.png) no-repeat; background-size:19px 27px;}
+	.result_list .book{ padding:20px; overflow:hidden; margin-bottom:20px;}
+	.result_list .author{ padding:20px; overflow:hidden; margin-bottom:20px; background:#fff;}
+	.result_list .author_info{ overflow:hidden; width:calc( 100% - 145px); padding:0; margin:0; float:right;}
+	.result_list .book_info {width: calc( 100% - 145px); float:right;}
+	.result_list .book_author{ font-size:0.95em;}
+	.result_list .voting{ margin:10px 0 5px 0;}
+	.result_list .author_info_list{ margin:0;}
+	.result_list .book_info_list{ margin:0;}
+	.result_list dt{ display:block; width:80px; float:left; color: #838383; font-size: 0.9em; font-weight:bold; margin:8px 0;}
+	.result_list dd{ display:block; width: calc( 100% - 80px); float:right; font-size:0.9em; color:#525252; margin:8px 0;}
+	.result_list .chapter{ color:#fa758a; font-size:1em;}
+	.result_list .about_author{ line-height:18px; height:54px; overflow:hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;}
+	.result_list .intro{ color:#525252;font-size:0.9em; line-height:18px; height:54px; overflow:hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+	
+/*找書看*/
+.findbook{ padding:20px; box-sizing:border-box;width:99%; max-width:1050px; margin:10px auto 0px auto; background:#fff; border:1px solid #f6f1da;}
+.find_list{ clear:both; overflow:hidden; margin-bottom:20px;}
+.find_list .label{ display: inline-block; vertical-align: top; color:#999; width:90px; font-size:0.9em; line-height:36px; }
+.find_list .options{ display:inline-block; width: calc( 100% - 100px); line-height:36px;  font-size:0.95em;}
+ul.tabs{ list-style:none; margin:0; padding:0;}
+.find_list ul.tabs li{ display:inline-block; padding:0 15px; }
+.find_list ul.tabs li.ui-tabs-active{ background-color:#fffddd; color:#c59001;}
+.find_list .tab_container{ background-color:#fffddd; margin-top: -1px; padding:0 10px; line-height: 30px;}
+.radio{ display:inline-block; margin:0 5px; padding:0 5px;}
+.radio:hover{ background-color:#F6F6F6;}
+.radio.checked{ color:#c59001;}
+.tab_container .radio:hover{ background:none;}
+.table{ width: 95%; max-width:1050px; margin:0 auto 30px auto;}
+.table .rhead{ border-bottom:1px solid #d8d8d8; overflow:hidden; padding:5px; font-size:0.9em;}
+.table .row{ width:100%; border-bottom:1px solid #e6e8ed; overflow:hidden; padding:5px; box-sizing:border-box;}
+.table .rhead>div{ display:inline-block; line-height: 42px; height: 42px; color: #999; padding:0 5px; box-sizing:border-box;}
+.table .row>div{ display:inline-block; vertical-align:middle; padding:0 5px; box-sizing:border-box;}
+.table .t1{width:28%;}
+.table .t2{width:20%; margin-left:-5px;}
+.table .t3{width:13%; margin-left:-5px;}
+.table .t4{width:9%; margin-left:-5px;}
+.table .t5{width:8%; margin-left:-5px; text-align:center;}
+.table .t6{width:16%; margin-left:-5px;}
+.table .t7{width:6%; margin-left:-5px; text-align:right;}
+.table .l_bookname{ white-space:normal;}
+.table .l_author{ white-space:normal;}
+.table .l_chaptname{ white-space:normal; display: -webkit-box; -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; max-height:4em;}
+.table .l_chaptname:hover{ color:#000; text-decoration:underline;}
+.table .l_date{ font-size:0.8em;}
+.table .tag{ font-size: 0.8em; padding: 2px 9px; margin: 0 4px 4px 0; color:#838383;}
+.table .num{ font-size:0.7em;}
+.table .statu-b{ display: inline-block;background: #378bd6; padding: 3px 10px; color:#fff; width: initial; font-size:0.7em;}
+.table .statu-t{ display: inline-block;background: #f0c814; padding: 3px 10px; color:#fff; width: initial; font-size:0.7em;}
+
+/*排行榜頁*/
+.rank{ width:95%; max-width:1050px; margin:0px auto 30px auto; display:flex; -webkit-flex-flow: row wrap; flex-flow: row wrap; justify-content:flex-start;}
+.rank h2 { margin: 0 0 20px 0; border-bottom: 1px solid #cc1867; line-height: 40px;}
+.rank .R_list{ width:330px; margin:10px 10px 30px 10px; position:relative;}
+.rank .R_tabs{ position:absolute; right:0; top:0;}
+	.R_tabs{ list-style:none; margin:0; padding:0;}
+	.R_tabs li{display:inline-block;}
+	.R_tabs a{ display:inline-block; padding:5px; margin:5px 3px; font-weight:bold; color:#e5d170; border-radius:5px; border:1px solid; line-height:1;}
+	.R_tabs li.ui-tabs-active a{color:#dd2b2b;}
+.rank_more{ width:95%; max-width:1050px; margin:0 auto 30px auto; position:relative;}
+.rank_more h2 { margin: 0 0 10px 0; border-bottom: 1px solid #cc1867; line-height: 40px;}
+.rank_more .R_tabs{ margin:0 0 20px 0;}
+.rank_more .table{ width:100%;}
+.rank_more .table .row{ padding:10px 5px; }
+.table .r1{width:5%; margin-left:-5px; text-align:center; color:#00a2ff;}
+.table .r2{width:29%;}
+.table .r3{width:25%; margin-left:-5px;}
+.table .r4{width:15%; margin-left:-5px;}
+.table .r5{width:12%; margin-left:-5px;}
+.table .r6{width:7%; margin-left:-5px; text-align:center;}
+.table .r7{width:7%; margin-left:-5px; text-align:right;}
+.R_notice{font-size:0.8em; text-align:right; line-height:30px; margin-bottom:30px;}
+
+/*標籤頁*/
+.selecttags{ padding:20px; box-sizing:border-box;width:98%; max-width:1050px; margin:10px auto 0px auto; background:#fff; border:1px solid #f6f1da;}
+.selecttags .h2{ font-size:1.17em; margin:0 0 10px 0; font-weight:bold;}
+.selecttags .h2 span{ font-size: 0.8em; color: #838383; font-weight: normal;}
+.selecttags label{ cursor: pointer;}
+.T_wrapbox input[type=checkbox]{display: none;}
+.T_wrapbox span{ display: inline-block; padding: 2px 5px; border: 1px solid #ebe1aa; border-radius: 2px; margin: 0 10px 10px 0; font-size: 0.9em;}
+.T_wrapbox input[type=checkbox]:checked+span{ color: #fff; background: #f9c842; border: 1px solid #f9c842;}
+.result{ width:95%; max-width: 1050px; margin: 0 auto 30px auto;}
+.R_list{ margin-bottom:25px;}
+.R_list .book{ margin-bottom:0;}
+.result_list .book_tags{ clear:both; background: #ffebee; padding:5px 10px;}
+.result_list .tag{ border: none; padding: 0; margin:5px; color:#6d595c;}
+.result_list .tag:before{ content: '#';}
+	.tag.selected{ color:#e11878;}
+
+/*公告*/
+.announcement{ width:95%; max-width:1050px; margin:30px auto;}
+.announcement h1{ font-size:1.17em; border-bottom:1px solid #cc1867; line-height:40px; margin:0.83em 0 30px 0; width:100%; color:#000; height:auto;}
+.announce_list{ margin-bottom:30px;}
+.An_list{ background:#fff; padding:10px; border-bottom: 1px solid #d2d9e2;}
+	.An_cate1{  display:inline-block; background:#d2186c; border-radius:2px; font-size:12px; color:#fff; width:30px; text-align:center; line-height:18px; margin:2px 0; vertical-align:top;}
+	.An_cate2{ display:inline-block; background:#0f81d2; border-radius:2px; font-size:12px; color:#fff; width:30px; text-align:center; line-height:18px; margin:2px 0; vertical-align:top;}
+	.An_list a{ }
+	.An_list a:hover{ text-decoration:underline;}
+	.An_title{ display:inline-block; width:calc( 100% - 160px); box-sizing:border-box; padding-left:10px; vertical-align:top;}
+	.An_date{ display:inline-block; width:120px; text-align:right; font-size:0.8em; color:#838383; vertical-align:top;}
+/*內頁*/
+.An_head{ border-top-left-radius:20px; border-top-right-radius:20px; background:#fffae0; padding:20px;}
+.An_head .An_date{width:100%; text-align:left; color:#f3c422; font-weight:bold;}
+.An_head .An_date:before{ content:'公告時間：'; color:#838383;  font-weight:normal;}
+.An_head  h1{ width:100%; margin:10px 0 0 0; padding:0; font-size:1.8em; font-weight:normal; color:#454545; border-bottom:0;}
+.An_head .An_cate1{ vertical-align: middle; margin:-2px 10px 0 0;}
+.An_head .An_cate2{vertical-align: middle; margin:-2px 10px 0 0;}
+.An_content{ padding:20px; background:#fff; font-size:0.9em;}
+.An_content a{ text-decoration:underline;}
+.An_content img{ width:auto; height:auto; max-height:100%; max-width:100%;}
+.content .btn_tan{ width:150px; margin-bottom:30px;}
+
+/*static*/
+.policies{ width:95%; max-width:1050px; margin: 0 auto 30px auto;}
+.privacy{ width:95%; max-width:1050px; margin: 0 auto 30px auto;}
+.faq{ width:95%; max-width:1050px; margin: 0 auto 30px auto;}
+.rrated{ width:95%; max-width:1050px; margin: 0 auto 30px auto;}
+.exchange{ width:95%; max-width:1050px; margin: 0 auto 30px auto;}
+.nav{ margin:0 0 -1px 0; padding:0;}
+.nav li{ display:inline-block; line-height:45px; height:45px; color:#adab9f; font-weight:bold; }
+.nav li+li{ margin-left:15px;}
+.nav li.current{ background:#fff; border:1px solid #f6f1da; border-bottom:none; color:#000; padding:0 20px;}
+.nav h1{ line-height:45px; height:45px; color:#000; margin:0; font-size:1em; width:auto;}
+
+.P_content{ padding:20px; background:#fff; border:1px solid #f6f1da; color:#666; font-size:0.95em; line-height:1.5;}
+
+.P_content .tabs{ margin-bottom:30px;}
+.P_content .tabs li{ display:inline-block;}
+.P_content .tabs li+li:before{ content:'/'; margin:0 5px;}
+.P_content .tabs a{ display:inline-block; border-radius:2px; padding:2px;}
+.P_content .tabs .current a{ color:#c59001;}
+.P_content .tabs a:hover{ background:#F6F6F6;}
+
+.P_content dt{ line-height: 36px; font-size: 1.1em; font-weight: bold;color:#000; font-size:1.2em;}
+.P_content dt:before{content: '>'; display: inline-block; border-radius: 20px; height: 20px; width:20px;  text-align: center; color: #fff; background:  #f9c842; margin-right: 5px; font-size: 18px; line-height:1;}
+.P_content dd{ margin-left:26px;}
+.P_content strong{ color:#000;}
+.P_content h2{ border-bottom:1px solid #cc1867;color:#000; width:100%; height:auto; font-size:1.17em; line-height:40px; margin:0 0 20px 0;}
+.P_wrapbox a{color: #cc1867; text-decoration:underline;}
+.P_wrapbox th,.P_wrapbox td{ padding:5px;}
+.P_wrapbox li{ margin-bottom:10px;}
+.faq_list{ list-style:none; padding:0; margin:5px 0 20px 0;}
+.faq_list li{ margin:5px 0;}
+.faq_list li:before{ content:'?'; font-size:13px; display:inline-block; border-radius: 20px; height: 15px; width:15px;  text-align: center; color: #fff; background:  #f9c842; margin-right: 5px; line-height:15px;}
+.P_content ol ol{ list-style-type:circle; margin: 10px 0 0 0;}
+
+.faq h2{text-align: center; background: #f9c842; color: #fff; line-height:36px; border-radius:5px; margin-top:40px; border-bottom:0;}
+
+.policies .select:hover{ height:200px;}
+.privacy .select:hover{ height:120px;}
+.exchange .select:hover{ height:80px;}
+
+/*成為作家*/
+.beauthor{ width:95%; max-width:1050px;margin:0 auto 30px auto;}
+.beauthor h1 {  border-bottom: 1px solid #cc1867; line-height: 40px; margin:0; font-size:1.17em; color:#000; width:100%; height:auto;}
+.author_rule{ height:500px; overflow:scroll; background:#fffef9;}
+.author_rule .P_content{ border:none; }
+.form{}
+.form label{ margin-right:10px; line-height:36px;}
+.form input[type=text]{ width:100%;padding:0 5px; height: 36px; line-height: 36px; color: #949393;border: 1px solid; border-radius: 5px;box-sizing:border-box;}
+.form select{ height:36px; border-radius:5px; outline:none;}
+.form dt{display: inline-block; vertical-align:top;  margin: 10px 0; line-height: 32px; font-size:0.9em; color:#838383;}
+.form dd{display: inline-block; vertical-align:top; margin: 10px 0; }
+.signup{ width:95%; max-width:1050px; margin:0 auto 30px auto;}
+.signup h2{ border-bottom:1px solid #cc1867; line-height:40px; margin:0 0 30px 0; font-size:1.17em; color:#000;}
+.signup dt{ width:150px;}
+.signup dd{ width:calc(100% - 160px); word-break:break-all;}
+.signup input[type=text]{ width:calc(100% - 300px); min-width:200px;}
+.signup select{ height:32px; border-radius:5px;}
+.captcha input[type=text]{ width:calc(100% - 410px); min-width:90px;}
+.address select{ width:10%; min-width:90px;}
+.address input[type=text]{ width:calc(80% - 330px); min-width:90px;}
+.signup dd .btn_func{ width:auto; padding:0 10px; font-size:0.9em;}
+.form_func{ padding:20px 20px 20px 160px; background:#e3e2e0;}
+.form_func label{ display:block; font-size:0.9em;}
+.form_func .btn_func{ width:auto; padding:0 20px;  margin:10px 0 20px 15px;}
+.form_func .btn_gray{ display:inline-block; height: 35px; line-height: 35px; border-radius:0; padding:0 20px;}
+.form_func a{ color:#dd2b2b; font-weight:bold;}
+.form_func a:hover{ color:#000;}
+.memo { color: #838383; font-size: 0.9em;}
+select.alarm{ border:1px solid #f342b8; }
+input.alarm{ border:1px solid #f342b8!important;}
+div.alarm{ display:block; color: #f342b8; font-size: 0.9em;}
+
+/*中繼頁*/
+.relay{ width:95%; max-width:800px; margin:0 auto; background:#fff; box-sizing:border-box; padding:50px; border-radius:10px;}
+.relay a{ color:#dd2b2b; font-size:1em; min-width:125px; width:auto; padding:0 10px; box-sizing:border-box;}
+.relay .r_txt{ margin:0px 0 30px 0;}
+.relay [class^=btn_]{ color:#fff;}
+
+/*錯誤頁*/
+.error{ text-align:center;  margin:20px auto;}
+.error img{width:90%; max-width:150px;}
+
+/*18禁*/
+.warn{ width:80%; max-width:400px; margin:20px auto; border:5px solid #ef1884; padding:20px 50px; box-sizing:border-box;}
+.warn h2{ font-size:48px; color:#000; text-align:center; margin: 0 0 40px 0; position:relative;}
+.warn h2 span{ position:relative; display:inline-block; vertical-align:middle;}
+.warn h2 span:before{ content:'18禁'; display:block; width:80px; height:80px; line-height:80px; font-size:28px; background:linear-gradient(#bb0808 7%,#eca0a0 50%,#bb0808 50%,#f21616 100%); color:#fff; margin-right:8px; border:1px solid #ee1414;}
+.warn h2 span:after{ content:''; display:block; position:absolute; bottom:-21px; left:0px; width:82px; height:20px; background:linear-gradient(rgba(198,0,1,0.3), rgba(198,0,1,0));}
+.warn p{ font-size:1em;}
+.no{ display:inline-block; box-sizing:border-box; width:45%; background:#d70000; color:#fff; padding-bottom:5px; margin-right:2%;}
+.yes{ display:inline-block; box-sizing:border-box; width:45%;background:#01b6b4; color:#fff; padding-bottom:5px;}
+.no span{ display:block; font-size:12px; background:#e91212; padding:5px 0; background:#e91212; margin-bottom:5px; color:#ffc4c4;}
+.yes span{ display:block; font-size:12px; background:#31cac8; padding:5px 0;background:#31cac8; margin-bottom:5px; color:#ddfbf8;}
+
+/*---------- stickies*/
+#stickies { width:100%; max-width:1050px; position:absolute; top:210px; left:50%;     transform: translate(-50%,0%); z-index:10;}
+#stickies .error_stickie{ border: solid 2px #f1afa4;  background-color: #ffc4c4;}
+#stickies .notice_stickie { border:solid 2px #399C07; background-color:#D7FFAF; }
+#stickies .error_stickie, #stickies .warning_stickie, #stickies .notice_stickie, #stickies .debug_stickie { margin-bottom:10px;padding:10px; }
+#stickies .stickies_close_area { margin:0; padding:0 10px 4px 0; float:right; font-size:12px;}
+
+/*popup*/
+.overlay{ display:none; background:rgba(0,0,0,0.7); position:fixed; top:0; right:0; bottom:0; left:0; z-index:99;}
+.popup { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); width:95%; max-width:480px; background:#fff; box-shadow:0 0 80px rgba(0,0,0,.1),0 0 10px rgba(0,0,0,.4); z-index:9999;}
+.pop_order,.pop_orderx{ max-width:490px;}
+.popup .head { padding:15px; color:#fff; font-size:20px; font-weight:bold; background:#c91865; text-align:center; position:relative;}
+.popup .xx { position:absolute; top:12px; right:8px; font-size:30px; width:30px; height:30px; cursor:pointer;}
+.popup .wrapbox {}
+.popup .wrap_content { padding:20px; line-height:22px;}
+.popup select { padding: 6px 8px; border: 1px solid #ccc;}
+
+/*popup for scroll*/
+.popup .wrapbox.scroll { position:relative; width:100%; height:100%; /*box-sizing: border-box;*/}
+.popup .wrapbox.scroll .head { width:calc(100% - 30px); position:relative; top:0; left:0; z-index:1;}
+.popup .wrapbox.scroll .wrap_content { max-height:500px; padding:0; overflow-y:auto;}
+.popup .wrapbox.scroll .wrap_content::-webkit-scrollbar{ width:8px; background-color:#fff; border-radius:10px;}
+.popup .wrapbox.scroll .wrap_content::-webkit-scrollbar-thumb{ background-color:#cfe2f4; border-radius:10px;}
+
+/*書櫃*/
+.popup input[type="text"] { border-radius:3px; background-color:#fff; border:1px solid #CCC; /*height:30px; line-height:30px;*/ box-sizing:border-box; padding:8px; color:#555; width:100%;}
+.popup input[type="text"]:hover,.popup input[type="text"]:focus { box-shadow:0 0 5px #dcf0ff; border:1px solid #bbe1ff;}
+.popup textarea { border-radius:3px; background-color:#fff; border:1px solid #CCC; box-sizing:border-box; padding:8px; color:#555;}
+.popup textarea:hover,.popup textarea:focus { box-shadow:0 0 5px #dcf0ff; border:1px solid #bbe1ff; resize:none;}
+.iw100 { width:100%;}
+.popup .wrap_inner { padding:10px 20px; overflow:hidden; }
+.popup dl {clear:both; margin:8px 0;}
+.popup dt { float:left;}
+.popup dd { padding-left:65px; margin:0;}
+.popup .toolbar { background-color:#f2f2f2; padding:10px 15px; margin:0;}
+.popup .toolbar [class^=btn]{ display:inline-block; min-width:100px; height:36px; line-height:36px;}
+.popup .toolbar .inner { text-align:right;}
+.popup .toolbar .txt { line-height:normal; padding-bottom:15px; font-size:13px;}
+.popup ul.tabs { background:#f2f2f2; padding:15px 0 0 10px; text-align:left; position:relative;height: inherit; z-index:0; margin:0;}
+.popup ul.tabs li{ display:inline-block; padding:10px; margin-bottom:-1px;}
+.popup ul.tabs li.ui-state-active { background-color:#fff;}
+.popup ul.tabs li a { font-weight:bold; }
+.popup .simple_captcha_label { clear:both;}
+.popup .simple_captcha_label input { width:100%; max-width:200px;}
+
+.popup h2{ font-size:16px; margin:10px 0; color:#000;}
+.popup input[type="radio"] { margin-right:8px;}
+
+.popup .simple_captcha_image { width: 110px; float: left; margin-right: 10px;}
+.popup .simple_captcha_field {  width: calc( 100% - 120px);float: left; font-size:0.9em;  color: #838383; text-decoration:underline; line-height: 37px;}
+.popup .simple_captcha_field:hover{ text-decoration:none;}
+
+.popup .formlist label { display:block; margin-bottom:5px;line-height:27px;}
+.popup .formlist label.disboc {  font-size:0.9em; color:#555;}
+.popup .formlist label.disboc:last-child { margin-bottom:0px; }
+.popup .formlist label.disboc+textarea{ width:100%;}
+
+/*贊助*/
+.popup .formlist label.disc_money{display:inline-block;}
+.pop_donate dd{ font-size:0.9em;}
+.pop_donate ol{ margin:0 0 0 18px; padding:0;}
+.pop_donate li{ margin-bottom:5px;}
+
+/*ad*/
+.ad300250,.ad300100{margin-bottom:30px; text-align: center;}
+.ad690195 {}
+.ad690195 img { max-width:100%!important; height: auto!important; _width:expression(this.width > 100 ? "100%" : this.width)!important;}
+
+/*19551 新增版位*/
+.link img{width:auto; height: auto; max-height: 100%; max-width: 100%;}
+
+/*19991文字廣告*/
+.text-ad {width:95%; max-width: 1050px; margin: 0 auto 30px auto; }
+.member_ad{ display: inline-block; background:#fff7d1; border-radius:30px; padding:5px 20px 5px 15px; margin: 2px;  box-sizing: border-box;}
+.text-ad .author_img{ width:30px; height: 30px; border-radius: 25px; overflow: hidden; float: left; vertical-align: middle;}
+.text-ad p{ margin: 0 0 0 5px; display: block; float: left; white-space: nowrap; line-height: 30px; vertical-align: middle; font-size: 14px; width:calc(100% - 35px); text-overflow: ellipsis; overflow: hidden;}
+.member_ad:after{ content:''; display: block; clear: both;}
+
+/*今日折扣*/
+.nav5 img{margin-left:2px;}
+
+.sale{width: 95%; max-width: 1000px; margin: 30px auto; }
+.sale h1{ font-size:1.17em; width:100%; color:#000; border-bottom:1px solid #cc1867; margin:30px 0 15px 0; line-height:30px !important; height:auto !important;}
+
+.msg_sale{font-size: 1.1em;font-weight: bold;color: #434343;margin: 30px 0;text-align: center;}
+
+.salelist{ display: flex; flex-direction: row; flex-wrap: wrap;gap:10px; margin-top:30px;}
+.salelist .book{width:190px; margin: 0;}
+.salelist .book_name,.salelist .book_author{ overflow: auto; white-space: normal; text-overflow: inherit;}
+.book_discount{ margin-top: 10px; font-size:14px; line-height: 1.2;}
+.book_discount b{ font-size: 1.2em; margin: 0 1px;}
+.sale_discout{ display: inline-block; padding:0 5px; border-radius: 2px; border:1px solid #cc1867; color:#cc1867;}
+.sale_discout+.sale_discout{margin-left:10px;}
+
+/* 今日特價新版 */
+.swiper-wrap { position: relative; padding:0 15px;}
+.swiper-wrap .swiper-container { padding: 0 10px; margin: 0 auto;}
+.swiper-wrap [class^=swiper-button-next] { position: absolute; top:40%; right:-20px; width:36px; height:36px; border-radius:50%; background:#fffef9; z-index: 2; cursor: pointer;}
+.swiper-wrap [class^=swiper-button-prev] { position: absolute; top:40%; left:-20px; width:36px; height:36px; border-radius:50%; background:#fffef9; z-index: 2; cursor: pointer;}
+.swiper-wrap [class^=swiper-button-next] span { display: inline-block; margin:12px 0 0 10px; width: 10px; height: 10px; border-top: 2px solid #000; border-right: 2px solid #000; transform: rotate(45deg);}
+.swiper-wrap [class^=swiper-button-prev] span { display: inline-block; margin:12px 0 0 14px; width: 10px; height: 10px; border-top: 2px solid #000; border-right: 2px solid #000; transform: rotate(-135deg);}
+.swiper-button-disabled, .swiper-button-disabled { opacity: 0.4;}
+.swiper-wrap .swiper-slide .book_cover { position: relative;}
+.swiper-wrap .swiper-slide .num { position: absolute; left:-5px; bottom:0; width: 20px; line-height: 20px; font-size: 12px; color: #fff; background: #000; border-radius: 50%; text-align: center;}
+.swiper-wrap .swiper-slide:nth-child(1) .num { background:#e60534;}
+.swiper-wrap .swiper-slide:nth-child(2) .num { background:#ff3b6e;}
+.swiper-wrap .swiper-slide:nth-child(3) .num { background:#ff6a8a;}
+.swiper-wrap .bname{ line-height:21px; font-size:0.95em; margin-bottom:5px;}
+.swiper-wrap .bauthor{ font-size:0.95em; color:#fa758a;}
+/* 特價篩選 */
+.filters { clear: both; border-top: 1px solid #ece9d9; margin-top:40px; padding-top:30px; font-size:15px;}
+.filters .list { margin-bottom:10px;}
+.filters ul { margin:0; padding:0;}
+.filters li { display: inline-block; vertical-align: middle;}
+.filters .label { display: inline-block; vertical-align:middle; width:80px; font-weight:bold;}
+.filters .txt { display: inline-block; vertical-align:middle; width:calc( 100% - 84px );}
+.filters label{ border: solid 1px #ff9cac;}
+.filters input[type=radio] { display: none;}
+.filters input[type=radio] + label{ display: block; border: solid 1px #ff9cac; border-radius: 5px; color:#000; padding:5px 15px; background:#fff; cursor: pointer; user-select: none; margin:4px;}
+.filters input[type=radio]:checked + label{ background-color:#ffdce2;}
+.disnum { display: none;}
+.activeTab{ display:block;}
+
+/*猜你有興趣的書*/
+.Algo_box{ max-width:1050px; width:90%; margin: 0 auto 50px auto;}
+.algorithm{ display: flex;}
+.algorithm .booklist+.booklist{margin:0 0 0 12px;}
+.algorithm .booklist{ flex: 0 0 calc(25% - 8px);}
+.algorithm .booklist a{float:left; width:50%; display: block;}
+    .algorithm .booklist:after{ content: ''; display: block; clear:both;}
+.algorithm .book_cover{ box-sizing: border-box; padding-right:10px; width:calc(50% - 10px)!important;}
+.algorithm .book_name{ white-space: normal; font-size:1em; font-weight: bold; line-height:16px; height:32px; overflow:hidden; display: -webkit-box!important; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin: 5px 0;}
+.algorithm .book_author{width:130px!important;}
+.algorithm .book_quote{ margin: 10px 0 0 0; display:block; font-size:0.9em; color:#838383; line-height:16px; height:64px; overflow:hidden; display: -webkit-box!important; -webkit-line-clamp: 4; -webkit-box-orient: vertical;  }
+
+@media screen and (max-width:970px){
+/*廣告*/
+.ad97090{ display:none;}
+}
+
+@media screen and (min-height:500px){
+	.relay{ position: absolute; top: 50%; left: 50%; transform:translate(-50%,-50%); }
+	.error{ position: absolute; top: 50%; left: 50%; transform:translate(-50%,-50%);}
+}
+@media screen and (min-height:790px){
+	.warn{ position: absolute; top: 50%; left: 50%; transform:translate(-50%,-50%); margin:0;}
+}
+
+@media screen and (min-height:825px){
+	.pop_score .wrapbox.scroll .wrap_content{ max-height:780px;}
+	.pop_donate .wrapbox.scroll .wrap_content{ max-height:600px;}
+}
+
+@media screen and (max-width:1050px){
+	.logo{ width:170px; left:5px;}
+	.H_wrapbox{ height:85px; }
+	.announce{ margin-top:31px;}
+	.search{ top:30px; right:10px;}
+	nav li{ margin:0 20px;}
+	.c_left{ width:65%;}
+	.c_right{ width:calc(35% - 20px);}
+	
+	#stickies { top:160px;}
+	
+	.rank .R_list{ width:45%;}
+	
+	/*猜你有興趣的書*/
+	.algorithm .booklist+.booklist{margin:0 0 0 20px;}
+	.algorithm .booklist{ flex: 0 0 calc(25% - 15px);}
+	.algorithm .booklist a{float:none; width:100%;}
+	.algorithm .book_cover{ width:100%!important;}
+    		
+	}
+@media screen and (min-width:768px){	
+	.nav1.current:before{ background:#fff; border:1px solid #f6f1da; box-sizing:border-box; border-bottom:none;}
+	.nav1.current:after{ content:''; display:block; position:absolute; background:#fff; border-left:1px solid #f6f1da;border-right:1px solid #f6f1da; box-sizing:border-box; height:11px; width:100%; z-index:10;}
+	.nav3.current:before{ background:#fff; border:1px solid #f6f1da; box-sizing:border-box; border-bottom:none;}
+	.nav3.current:after{ content:''; display:block; position:absolute; background:#fff; border-left:1px solid #f6f1da;border-right:1px solid #f6f1da; box-sizing:border-box; height:11px; width:100%; z-index:10;}
+		
+	/*贊助結果頁*/
+	.donate_succeed > div{ display:inline-block; margin:0 30px; vertical-align:middle;}
+    
+}
+	
+@media screen and (max-width:767px){
+	/*header*/
+	header{ margin-bottom:30px;}
+	.logo{ width:120px;}
+	.H_wrapbox{ height:60px; }
+	.search{ width: calc( 100% - 220px); right:80px; top:20px;}
+	.announce{ max-width:100%; width:100%; margin:60px auto 0 auto; box-sizing:border-box; text-align:left;  border: none;  color: #fff; background:#cc1867 url(../images/icon_announceW.png) no-repeat 8px center;}
+	
+	#stickies { top:110px;}
+
+	.device_member_toggle { display:block; width:17px; height:20px; position:absolute; top:22px; right:45px; background:url(../images/icon_member.png) no-repeat center/cover; cursor:pointer; z-index:10;}
+	.navbar{display:block; box-sizing:border-box; width:250px; height:1000px; position:fixed; top:0; right:-250px; background:#fa758a; transition:right ease-in 0.1s; box-sizing:border-box; padding-top:35px; color:#fff;}
+	.navbar.slideIn{right:0px; transition:right ease-in 0.5s; z-index:99; overflow:scroll;}
+	.device_nav_toggle{ cursor:pointer; display:block; position:absolute; width:20px; height:20px; right:10px; top:25px; z-index:10;}
+	.device_nav_toggle span{display:block; width:20px; height:3px; background:#fa758a;}
+	.device_nav_toggle span:before{ content:''; display:block;  width:20px; height:3px; position:absolute; top:7px; background:#fa758a;}
+	.device_nav_toggle span:after{ content:''; display:block;  width:20px; height:3px; position:absolute; top:14px; background:#fa758a;}
+	/*minihead左*/
+	.left-nav{ display:none;}
+	/*minihead右*/
+	.right-nav{ float:none;}
+	.navbar li{ float:none; height:auto; line-height:45px;}
+	.navbar a{ display:block; font-size:1.2em; }
+	.navbar a:hover { background:#e85169;}
+	.navbar .member{ text-align:center;}
+	.navbar .member a{ display:inline-block; color:#FF0; font-size:1em; }
+	.navbar .member a:hover{color:#fff;}
+	.navbar .member img{width:100px; height:100px; margin:0 auto 10px auto; border-radius:0; border:5px solid #fff;}
+	.navbar li{ text-align:center;border-right:none;}
+	.member_hotkey{ display:block; position:relative; background:none; border:none; background:#ff8d9f;}
+	.arrow-d{ border-top: 6px solid #fff;}
+	.mo{ display:block; background:#ce5467; font-size:0.95em; color:#fff1aa; font-weight:normal;}
+	.mo:active,.mo:link{ background:#ce5467;}
+	
+	nav{ display:block; box-sizing:border-box; width:250px; height:1000px; position:fixed; top:0; right:-250px; background:#fa758a; transition:right ease-in 0.1s; box-sizing:border-box; padding-top:35px; overflow:scroll;}
+	nav.slideIn{right:0px; transition:right ease-in 0.5s; z-index:99;}
+	nav li{display:block; margin:0;}
+	nav li:hover:before{ height:50px;}
+	nav li.current:before{ height:50px;}
+	nav a{ display:block; margin:0; text-align:center;}
+	
+	.N_close{ cursor:pointer; display:block; position:relative; width:20px; height:20px; padding:0; margin:0; top: -15px; left: 200px;}
+	.N_close:hover{ background:#fa758a!important;}
+	.N_close:before{ content:''; transform:rotate(45deg); background:#fff; width:20px; height:3px; position:absolute; top:7px; left:2px;}
+	.N_close:after{ content:'';transform:rotate(-45deg); background:#fff; width:20px; height:3px; position:absolute; top:7px; left:2px;}
+    
+    /*橫式塊狀書籍樣式*/
+    .R_wrapbox{ width: calc( 100% - 100px);}
+	
+	/*申請成為作家*/
+	.form_func{ padding:20px;}
+	
+	/*讀者推薦*/
+	.reader_recom .book{ width:49%; max-width: 150px;}
+	/*潛力新書*/
+    .potential .book{ width:49%; max-width: 150px;}
+	
+    /*書籤*/
+    .bookmark_yellow{ border-top:15px solid #fae23f; border-right:15px solid #fffef9;border-bottom:15px solid #fffef9; border-left:15px solid #fae23f; }
+    .bookmark_green{  border-top:15px solid #64cb7e; border-right:15px solid #fffef9;border-bottom:15px solid #fffef9; border-left:15px solid #64cb7e; }
+	.B_content{left:inherit; top:inherit; right:45px; bottom:0px;}
+	.B_content:before{ top:inherit; left:inherit; right:-20px; bottom:12px; border-left:10px solid rgba(0,0,0,0.9); border-right:10px solid transparent; border-top:6px solid transparent; border-bottom:6px solid transparent;}
+[class^=bookmark]:hover+.B_content{ display:block; z-index:15;}
+    .r_cover{ width:90px;}
+	
+	/*書籍資訊*/
+	.book_detail .book_cover{ float:none; margin:0 auto 20px auto;}
+	.book_info{ float:none; width:100%;}
+	.order .book_info{ width:100%;}
+	.donate_more .book_info{ width:100%;}
+	.book_detail h1{ width:100%;}
+	.compete_area .tip {width: 200px;}
+	.order .book_info_list{ margin:20px 0 0 0;}
+    /*留言區*/
+    .C_member{ width:50px;}
+	.C_list_reader .C_msg{ width:calc( 100% - 70px); float:right;}
+    .work_list .book_info{ width:100%;}
+	
+	/*讀者回應*/
+	.book_comments .book{ width: 95%; float:none; margin:0 auto 20px auto; text-align:center; background:none;}
+	.book_comments .book_cover{ width:170px; margin:0 auto 10px auto;}
+	.Comment_wrapbox{ float:none; width:100%;}
+    
+    
+    /*章回列表*/
+    .c_l{ padding: 10px;}
+    .chapter_list .l_bookmark{ width: 0; height: 0;}
+    .chapter_list [class^=bookmark]{left:inherit; top:inherit;bottom:0; right: 0;}
+    .chapter_list .l_counter{ width: calc(100% - 130px); float: none; margin-top: 5px;}
+    .chapter_list .l_chaptname{width: calc(100% - 130px);  float: none; margin-top: 5px;}
+    .chapter_list .l_date,.chapter_list .l_font{ width: 100%;  float: none; text-align: left; margin-top: 5px; padding-left: 0;}
+    .chapter_list .l_btn{ position: absolute; width:130px; right: 5px; top:15px;}
+    
+    /*多筆訂購*/
+    .order_list .l_check{ width:30px;}
+    .order_list .l_btn{ width:calc( 100% - 60px); }
+    .order_list .btn_L_gray{ width:100px;}
+	.order_list .btn_L_red{width:100px; margin-left:10px;}
+    .order_list .l_chaptname{ width:calc( 100% - 30px); margin-bottom: 5px;}
+    .order_list .l_date,.order_list .l_font{ clear: both; width: 100%;  float: none; text-align: left; padding-left: 0; margin: 0 0 5px 30px;}
+    .order_list .l_statu{ text-align: left; width:100%; margin-left: 30px;}
+	
+	/*作家作品列表*/
+	.work_list .book_detail { padding: 20px 15px 0 15px;}
+	
+	/*搜尋頁*/
+	.result_list .book{ padding:10px; font-size:0.9em;}
+	.result_list .book_cover{ width:75px;}
+	.result_list .book_info{ width: calc( 100% - 85px);}
+	.result_list .author_img{ width:75px;}
+	.result_list .author_info{ width: calc( 100% - 85px);}
+	
+	/*找書看*/
+	.findbook{ margin:0 auto 0px 0; padding:10px;}
+	.table .rhead{ display:none;}
+	.table .row>div{ display:block; width:100%; float:none; padding:0 0 0 80px; margin:10px 0; position:relative; line-height: 18px;}
+	.table .t5{text-align:left;}
+	.table .t7{text-align:left;}
+	.table .row>div:before{ font-size:0.7em; width:80px; display:block; position:absolute;left:0; color:#838383;}
+	.t1:before{ content:'書名：';}
+	.t2:before{ content:'最新章回：';}
+	.t3:before{ content:'作者：';}
+	.t4:before{ content:'更新時間：';}
+	.t5:before{ content:'狀態：';}
+	.t6:before{ content:'標籤：';}
+	.t7:before{ content:'統計：';}
+	
+	/*排行榜*/
+	.rank_more .R_tabs{ position:absolute; right:5px; top:0;}
+	.table .r1{text-align:left;}
+	.table .r6{text-align:left;}
+	.table .r7{text-align:left;}
+	.r1:before{ content:'排名：';}
+	.r2:before{ content:'書名：';}
+	.r3:before{ content:'最新章回：';}
+	.r4:before{ content:'作者：';}
+	.r5:before{ content:'更新時間：';}
+	.r6:before{ content:'狀態：';}
+	.r7:before{ content:'人氣：';}
+	
+	/*贊助列表*/
+	.donate_list .row>div{ padding:0;}
+	
+	/*贊助列表頁*/
+	.donate_more .member{ width:100%; margin-bottom:5px;}
+	.donate_more .price{ width:calc(100% - 195px);}
+	
+	/*公告頁*/
+	.announcement h1{ margin:45px 0 0 0;}
+	
+	/*popup*/
+	.popup .wrapbox.scroll .wrap_content { max-height:400px;}
+
+
+	/*footer*/
+	footer{ padding:15px 0;}
+
+	
+	.content{ width:95%; margin:0 auto;}
+	.c_left{ width:100%; float:none;}
+	.c_right{ width:100%; float:none;}
+	
+	.book_l{ width:95%; float:none; overflow:hidden; margin:0 auto;}
+	.book_l:nth-of-type(2n){ margin-left:none;}
+	
+	
+	/*今日折扣*/
+	.sale{ margin: 60px auto 30px auto;}
+	.salelist .book{width:100%; border-bottom:1px solid #d2d9e2; position: relative;}
+	.salelist .book:after{content:''; display: block; clear:both;}
+	.salelist .book_cover{float:left; margin-right: 15px; width:130px;}
+	.book_discount{ position: absolute; bottom:20px; left: 155px;}
+	
+	.sale .swiper-wrap { padding: 0;}
+	.sale .swiper-wrap .swiper-container { padding: 0; text-align: center;}
+	.sale .swiper-slide { display: inline-block; width:150px; height:310px; vertical-align: top;}
+	.sale [class^=swiper-button-next], .sale [class^=swiper-button-prev] { display:none; }
+	
+	/*猜你有興趣的書*/
+	.algorithm .booklist+.booklist{margin:0 0 0 24px;}
+	.algorithm .booklist{ flex: 0 0 calc(33% - 18px);}
+}
+@media screen and (max-width:468px){
+	
+	.bn-next { display: none;}
+	.bn-prev { display: none;}
+	/*.bn-next span { margin:15px 0 0 2px; width:8px; height:8px; border-top:1px solid #000; border-right:1px solid #000; transform: rotate(45deg);}
+	.bn-prev span { margin:15px 0 0 5px; width:8px; height:8px; border-top:1px solid #000; border-right:1px solid #000; transform: rotate(-135deg);}*/
+	
+	.CONTAINER{padding-bottom:180px; }
+	h1{ font-size:14px; line-height:14px; height:14px;}
+	
+	.book_data{ width:49%;}
+     .order_list .btn_L_gray{ margin:0 0 5px 0;}
+    .A_info{ float: none; width:80%; max-width: 200px; margin:0 auto 20px auto;}
+	.A_intro{ float: none; width: 100%;}
+	
+	/*站方公告*/
+	.An_title{ width: calc(100% - 50px); }
+	.An_date{ padding:5px 5px 5px 43px; text-align:left;}
+	.An_head h1{ margin: 0;}/*站方公告內頁*/
+	.An_head .An_date{ padding:0;}/*站方公告內頁*/
+	
+	.rank .R_list{ width:95%;}
+	
+	/*18禁提醒頁*/
+	.warn{ padding:20px; position:relative; margin:50px auto; transform:none; top:inherit; left:inherit;}
+	.warn h2{ font-size:36px;}
+	.warn h2 span:before{width:50px; height:50px; line-height:50px;font-size: 18px;}
+	.warn h2 span:after{ width:52px; height:15px;}
+	
+	/*按鈕區*/
+	.toolbar{ text-align:center;}
+	.toolbar a{width:calc(50% - 15px);}
+	.toolbar input[type=button]{width:calc(50% - 15px);}
+	
+	/*表單*/
+	.signup dt{ width:75px; margin-right:5px;}
+	.signup dd{ width:calc(100% - 85px);}
+	.signup input[type=text] { width: 90%; margin-bottom:5px;}
+	.address select{ margin-bottom: 10px;}
+	
+	/*static*/
+	.nav li{ margin:0 10px 10px 0;}
+	.nav li+li{margin:0 10px 10px 0;}
+	.nav li.current{}
+	.P_content img{ width:100%;}
+	
+	/*麵包屑*/
+	.breadcrumbs{ line-height:28px;}
+
+	
+	/*頁碼*/
+	.page span{width:25px; height: 25px; line-height: 25px; margin:5px; font-size:0.7em;}
+	.page a{width:25px; height: 25px; line-height: 25px; margin:5px; }
+	a.first{ background-position: -2px -32px;}
+	a.flirst:hover{ background-position: -2px -3px;}
+	span.first{  background-position: -2px -61px;}
+	a.previous{  background-position: -41px -32px;}
+	a.previous:hover{ background-position: -41px -3px;}
+	span.previous{  background-position:-41px -61px;}
+	a.next{  background-position:-80px -32px;}
+	a.next:hover{ background-position: -80px -3px;}
+	span.next{  background-position:-80px -61px;}
+	a.last{  background-position:-119px -31px;}
+	a.last:hover{ background-position: -119px -3px;}
+	span.last{ background-position: -119px -61px; }
+	
+	/*popoup*/
+	.popup .head { font-size:18px; font-weight:normal;}
+	.popup .xx { top:12px; right:8px; font-size:20px; width:20px; height:20px;}
+	.popup .toolbar .btn_gray,.popup .toolbar .btn_blue{ margin:0 5px 5px 0; }
+	
+	/*.relay{ position: absolute; top: 50%; left: 50%; transform:translate(-50%,-50%); }
+	.warn{ position: absolute; top: 50%; left: 50%; transform:translate(-50%,-50%); }*/
+	
+	/*19991文字廣告*/
+	.member_ad{ padding:5px 10px;}
+	.member_ad .author_img{ /*width:20px; height: 20px;*/ display: none;}
+	.text-ad p{width:100%; line-height: 20px;}
+	
+	/*猜你有興趣的書*/
+	.algorithm .booklist+.booklist{margin:0 0 0 30px;}
+	.algorithm .booklist{ flex: 0 0 calc(50% - 25px);}
+	
+}
+
+@media screen and (max-width:375px){
+	.msg_onsale span{ display:block;}
+}
+
+@media screen and (max-width:320px){
+	.CONTAINER{ padding-bottom:220px;}
+	footer>div:nth-of-type(2){ transform:scale(0.85,0.85); white-space:nowrap; transform-origin:55px 0; }
+	footer>div:nth-of-type(3){transform:scale(0.85,0.85); white-space:nowrap;transform-origin:30px 0; }
+	.book+.book{ margin-left:0;}
+}
+
+/*工程師套版後*/
+.ui-widget-content a{}
+.ui-widget.ui-widget-content{ font-family:'微軟正黑體'; font-size:1em; padding:0; border:0; background:none;}
+.ui-tabs { padding:0; border:0;}
+.ui-tabs .ui-tabs-nav{padding:0; border:0;}
+.ui-tabs .ui-tabs-panel{ padding:0!important;}
+.ui-widget-header{padding:0; border:0;}
+.ui-tabs .ui-tabs-nav li{ border:0; border-radius:unset; background:none;}
+
+.ui-widget-content .btn_gray{ color:#fff!important;}
+.popup .ui-tabs .ui-tabs-nav { background:#f2f2f2; padding:15px 0 0 10px; text-align:left; position:relative;height: inherit; z-index:0; margin:0;}
+.popup .ui-tabs .ui-tabs-nav li{ display:inline-block; margin-bottom:-1px;}
+.popup .ui-tabs .ui-tabs-nav li.ui-tabs-active { background-color:#fff;}
+.popup .ui-tabs-nav li a { font-weight:bold; }
+.R_list .ui-tabs .ui-tabs-nav{ position:absolute; right:-5px; top:-62px; list-style:none; margin:0; padding:0; background:none;}
+.R_list .ui-tabs .ui-tabs-nav li{display:inline-block; border:0;}
+.R_list .ui-tabs .ui-tabs-nav a{ display:inline-block; padding:5px; margin:5px 3px; font-weight:bold; color:#e5d170; border-radius:5px; border:1px solid; line-height:1;}
+.R_list .ui-tabs .ui-tabs-nav li.ui-tabs-active a{color:#dd2b2b;}
+
+/* 官方認證標記 */
+.certified {display: inline-block; border-radius:10px; font-size:13px; line-height:20px; margin-left: 5px; vertical-align:middle; color:#fa758a; border:1px solid #ffb3ba; background:#fff8f9; padding:0 5px 1px 5px;}
+
