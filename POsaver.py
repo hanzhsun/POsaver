@@ -158,7 +158,7 @@ def get_book():
                 if html != 1:
                     inline('.')
                     chapter = epub.EpubHtml(title=html.h1.text, file_name=f"{counter}.xhtml", lang='zh')
-                    chapter.content = str(html.h1) + ''.join(re.sub(r'\xa0|\r|\s+', '', str(e)) for e in html.select('p'))
+                    chapter.content = str(html.h1).replace('h1','h3') + ''.join(re.sub(r'\xa0|\r|\s+', '', str(e)) for e in html.select('p'))
                     add_chapter(chapter)
                     break
                 inline('x')   
