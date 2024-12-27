@@ -118,7 +118,7 @@ def get_book():
 
         for img in e.find_all('img'):
             img.decompose()
-        
+
         for comment in e.find_all(string=lambda text: isinstance(text, Comment)):
             comment.extract() 
 
@@ -152,7 +152,11 @@ def get_book():
         for c in clist:
             counter = c.find('div', class_='l_counter').text
             inline(counter)
-            url = prefix + c.find('a')['href']
+            a = c.find('a')
+            if a.get('class') == ['btn_L_red']:
+                inline('未订购')
+                continue
+            url = prefix + a['href']
             while True:
                 html = get_page_r(url)
                 if html != 1:

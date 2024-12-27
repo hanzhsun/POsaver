@@ -290,14 +290,14 @@ input[type=button],input[type=submit]{ outline:none; border:0; cursor:pointer; f
 .book_detail h2{ margin:0; font-size:1em; }
 	.book_detail .book_cover{ width: 180px; max-height: 254px; float:left;}
 	.book_detail .book_name{ overflow:initial; width:100%; box-sizing:border-box; font-size:1.2em; line-height:1.35; color:#fa758a; font-weight:bold; white-space:normal;}
-	.book_detail .book_author{ font-size:1em; white-space:normal; color:#838383;}
+	.book_detail .book_author{ font-size:1em; white-space:normal; color:#838383; clear: right;}
 	.book_detail .book_author:hover{ text-decoration:underline;}
-.book_info{ width:calc( 100% - 200px);}
+.book_info{ display: block;}
 .book_info_list:after{ content:''; display:block; clear:both;}
-.book_info_list dt{ display:block; float:left; width:120px; color:#838383; font-size:0.9em; margin:5px 0; line-height:18px;}
-.book_info_list dd{ display:block; float:left; width:calc( 100% - 120px); font-size:1em; margin:5px 0; line-height:18px; min-height:18px; position:relative;}
+.book_info_list dt{ display:block; float:left; width:40%; color:#838383; font-size:0.9em; margin:5px 0; line-height:18px; clear:left;}
+.book_info_list dd{ display:block; float:left; width:60%; font-size:1em; margin:5px 0; line-height:18px; min-height:18px; position:relative;}
 
-dd.statu{ font-size:0.9em;}
+dd.statu{ font-size:0.9em; }
 dd.statu span{font-size:0.9em; color:#838383;}
 dd.price{ color:#3498ff;font-weight:bold;}
 	img[src="images/coin.png"]{vertical-align:middle;}
@@ -843,20 +843,8 @@ div.alarm{ display:block; color: #f342b8; font-size: 0.9em;}
 .pop_donate ol{ margin:0 0 0 18px; padding:0;}
 .pop_donate li{ margin-bottom:5px;}
 
-/*ad*/
-.ad300250,.ad300100{margin-bottom:30px; text-align: center;}
-.ad690195 {}
-.ad690195 img { max-width:100%!important; height: auto!important; _width:expression(this.width > 100 ? "100%" : this.width)!important;}
-
 /*19551 新增版位*/
 .link img{width:auto; height: auto; max-height: 100%; max-width: 100%;}
-
-/*19991文字廣告*/
-.text-ad {width:95%; max-width: 1050px; margin: 0 auto 30px auto; }
-.member_ad{ display: inline-block; background:#fff7d1; border-radius:30px; padding:5px 20px 5px 15px; margin: 2px;  box-sizing: border-box;}
-.text-ad .author_img{ width:30px; height: 30px; border-radius: 25px; overflow: hidden; float: left; vertical-align: middle;}
-.text-ad p{ margin: 0 0 0 5px; display: block; float: left; white-space: nowrap; line-height: 30px; vertical-align: middle; font-size: 14px; width:calc(100% - 35px); text-overflow: ellipsis; overflow: hidden;}
-.member_ad:after{ content:''; display: block; clear: both;}
 
 /*今日折扣*/
 .nav5 img{margin-left:2px;}
@@ -1219,11 +1207,6 @@ div.alarm{ display:block; color: #f342b8; font-size: 0.9em;}
 	
 	/*.relay{ position: absolute; top: 50%; left: 50%; transform:translate(-50%,-50%); }
 	.warn{ position: absolute; top: 50%; left: 50%; transform:translate(-50%,-50%); }*/
-	
-	/*19991文字廣告*/
-	.member_ad{ padding:5px 10px;}
-	.member_ad .author_img{ /*width:20px; height: 20px;*/ display: none;}
-	.text-ad p{width:100%; line-height: 20px;}
 	
 	/*猜你有興趣的書*/
 	.algorithm .booklist+.booklist{margin:0 0 0 30px;}
