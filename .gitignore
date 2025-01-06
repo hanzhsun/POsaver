@@ -1,3 +1,6 @@
 *.conf
 *.ipynb
 *.azw3
+*.txt
+*/
+*.spec
