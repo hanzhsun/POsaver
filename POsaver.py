@@ -113,13 +113,15 @@ def get_book():
                     text += f"""
 {counter + '·' + html.h1.text.strip()}
 
-{content}"""
+{content}
+"""
                     break
                 inline('x')
 
     with open(f"./{btitle}.txt","w", encoding='utf-8') as f:
         f.write(text)
-    print(f'{btitle}下载完成')
+    print()
+    print(f'《{btitle}》下载完成')
 
 if __name__ == '__main__':
     while True:
