@@ -81,97 +81,45 @@ def get_book():
         else:
             print("无效的编码，请重新输入")
 
-    book = epub.EpubBook()
-
-    def add_chapter(c):
-        book.add_item(c)
-        book.spine.append(c)
-        book.toc.append(c)
-
     btitle = home.h1.text
-    book.set_identifier(bid)
-    book.set_title(btitle)
-    book.set_language('zh')
-    book.add_metadata('DC', 'publisher', 'POsaver')
-
+    
     author_tag = home.find('a', class_='book_author')
     author = author_tag.text
-    book.add_author(author)
-
-    cover = home.find('div', class_='book_cover').find('img')['src']
-    book.set_cover('cover.jpg', requests.get(cover).content)
 
     status = home.find('dd', class_='statu').text.strip()
     n = math.ceil(int(re.search(r'\d+', status)[0]) / 100)
     description = home.find('div', class_='B_I_content').get_text(separator="\n", strip=True)
-    book.add_metadata('DC', 'description', f"""
-    原址: {b}
-    作者: {author} ({prefix + author_tag['href']})
-    状态: {status}
-    简介: {description}
-    """.strip())
-
-    page = home.select('div.book_info, div.book_intro')
-    for e in page:
-        for a in e.find_all('a', href=True):
-            a['href'] = requests.compat.urljoin(prefix, a['href'])
-
-        for img in e.find_all('img'):
-            img.decompose()
-
-        for comment in e.find_all(string=lambda text: isinstance(text, Comment)):
-            comment.extract() 
-
-    abstract = epub.EpubHtml(title='简介', file_name='abstract.xhtml', lang='zh')
-    abstract.content = '<link href="/css/styles.css" rel="stylesheet" type="text/css"/>' + ''.join(str(e) for e in page)
-
-    with open(os.path.join(base,'layout.css'), 'r', encoding='utf-8') as f:
-        css = f.read()
-    css_item = epub.EpubItem(
-        file_name='css/styles.css', 
-        media_type='text/css', 
-        content=css.encode('utf-8')
-    )
-    book.add_item(css_item)
-    abstract.add_item(css_item)
-
-    with open(os.path.join(base,'share.png'), 'rb') as f:
-        image = f.read()
-    img_item = epub.EpubItem(
-        file_name='images/share.png',
-        media_type='image/png',
-        content=image
-    )
-    book.add_item(img_item)
-    
-    add_chapter(abstract)
+    text = f"""书名: {btitle}
+原址: {b}
+作者: {author} ({prefix + author_tag['href']})
+状态: {status}
+标签: {'、'.join([t.text.strip() for t in home.find_all('a', class_='tag')])}
+简介: {description}
+文档由POsaver (https://github.com/hanzhsun/POsaver) 生成
+"""
 
     for i in range(n):
         clist = get_page(b + f'/articles?page={i+1}').select('div.c_l')
         print(f'第{i+1}页: {len(clist)}章')
         for c in clist:
-            counter = c.find('div', class_='l_counter').text
+            counter = re.sub(r'^0+', '', c.find('div', class_='l_counter').text)
             inline(counter)
-            a = c.find('a')
-            if a.get('class') == ['btn_L_red']:
-                inline('未订购')
-                continue
-            url = prefix + a['href']
+            url = prefix + c.find('a')['href']
             while True:
                 html = get_page_r(url)
                 if html != 1:
                     inline('.')
-                    chapter = epub.EpubHtml(title=html.h1.text, file_name=f"{counter}.xhtml", lang='zh')
-                    chapter.content = str(html.h1).replace('h1','h3') + ''.join(re.sub(r'\xa0|\r|\s+', '', str(e)) for e in html.select('p'))
-                    add_chapter(chapter)
-                    break
-                inline('x')   
+                    content = '\n'.join(re.sub(r'\xa0|\r|\s+', '', e.text.strip()) for e in html.select('p'))
+                    text += f"""
+{counter + '·' + html.h1.text.strip()}
 
-    fbook = f'{btitle}.epub'
-    fazw = f'{btitle}.azw3'
-    epub.write_epub(fbook, book)
-    subprocess.run(['ebook-convert', fbook, fazw])
-    os.remove(fbook)
+{content}"""
+                    break
+                inline('x')
+
+    with open(f"./{btitle}.txt","w", encoding='utf-8') as f:
+        f.write(text)
+    print(f'{btitle}下载完成')
 
 if __name__ == '__main__':
     while True:
