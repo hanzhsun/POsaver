@@ -153,6 +153,9 @@ def get_book():
             counter = c.find('div', class_='l_counter').text
             inline(counter)
             a = c.find('a')
+            if a is None:
+                inline('无法订购')
+                continue
             if a.get('class') == ['btn_L_red']:
                 inline('未订购')
                 continue
@@ -162,7 +165,7 @@ def get_book():
                 if html != 1:
                     inline('.')
                     chapter = epub.EpubHtml(title=html.h1.text, file_name=f"{counter}.xhtml", lang='zh')
-                    chapter.content = str(html.h1).replace('h1','h3') + ''.join(re.sub(r'\xa0|\r|\s+', '', str(e)) for e in html.select('p'))
+                    chapter.content = str(html.h1).replace('h1','h3') + ''.join(re.sub(r'\xa0|\r|^\s+', '', str(e)) for e in html.select('p'))
                     add_chapter(chapter)
                     break
                 inline('x')   
