@@ -104,12 +104,19 @@ def get_book():
         for c in clist:
             counter = re.sub(r'^0+', '', c.find('div', class_='l_counter').text)
             inline(counter)
-            url = prefix + c.find('a')['href']
+            a = c.find('a')
+            if a is None:
+                inline('无法订购')
+                continue
+            if a.get('class') == ['btn_L_red']:
+                inline('未订购')
+                continue
+            url = prefix + a['href']
             while True:
                 html = get_page_r(url)
                 if html != 1:
                     inline('.')
-                    content = '\n'.join(re.sub(r'\xa0|\r|\s+', '', e.text.strip()) for e in html.select('p'))
+                    content = '\n'.join(re.sub(r'\xa0|\r|\s{2,}', '', e.text.strip()) for e in html.select('p'))
                     text += f"""
 {counter + '·' + html.h1.text.strip()}
 
@@ -118,7 +125,8 @@ def get_book():
                     break
                 inline('x')
 
-    with open(f"./{btitle}.txt","w", encoding='utf-8') as f:
+    safe_btitle = re.sub(r'[\\/:*?"<>|]', '_', btitle)
+    with open(f"./{safe_btitle}.txt", "a", encoding="utf-8") as f:
         f.write(text)
     print()
     print(f'《{btitle}》下载完成')
