@@ -1,9 +1,17 @@
 name: Build and Release
 
+permissions:
+  contents: write
+
 on:
   push:
     tags:
       - 'v*'
+    workflow_dispatch:
+      inputs:
+        tag:
+          description: 'Tag to release'
+          required: true
   workflow_dispatch:
     inputs:
       tag:
@@ -15,7 +23,8 @@ jobs:
     name: Build Windows Executable
     runs-on: windows-latest
     env:
-      RELEASE_TAG: ${{ github.ref_name || github.event.inputs.tag }}
+      # Only accept manual input tag (workflow_dispatch). No fallback to ref_name.
+      RELEASE_TAG: ${{ github.event.inputs.tag }}
 
     steps:
       - name: Checkout
@@ -58,7 +67,8 @@ jobs:
     name: Build macOS App
     runs-on: macos-latest
     env:
-      RELEASE_TAG: ${{ github.ref_name || github.event.inputs.tag }}
+      # Only accept manual input tag (workflow_dispatch). No fallback to ref_name.
+      RELEASE_TAG: ${{ github.event.inputs.tag }}
 
     steps:
       - name: Checkout
@@ -114,7 +124,8 @@ jobs:
     needs: [build-windows-exe, build-macos-app]
     runs-on: ubuntu-latest
     env:
-      RELEASE_TAG: ${{ github.ref_name || github.event.inputs.tag }}
+      # Only accept manual input tag (workflow_dispatch). No fallback to ref_name.
+      RELEASE_TAG: ${{ github.event.inputs.tag }}
 
     steps:
       - name: Checkout
