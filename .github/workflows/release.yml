@@ -132,15 +132,20 @@ jobs:
           name: macos-app
           path: release-artifacts
 
-      - name: Generate release notes
-        id: notes
+      - name: Generate release notes file
         run: |
           TAG="$RELEASE_TAG"
           echo "## Changes in $TAG" > release_notes.md
           git --no-pager log -n 20 --pretty=format:"- %s (%h)" >> release_notes.md
-          echo "notes<<EOF" >> $GITHUB_OUTPUT
-          cat release_notes.md >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Read release notes into output
+        id: notes
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const notes = fs.existsSync('release_notes.md') ? fs.readFileSync('release_notes.md','utf8') : '';
+            return { notes };
 
       - name: Create GitHub Release and upload files
         uses: softprops/action-gh-release@v1
