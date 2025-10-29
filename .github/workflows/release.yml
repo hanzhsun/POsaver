@@ -7,13 +7,16 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Tag to release (overrides event tag)'
-        required: false
+        description: 'Tag to release'
+        required: true
 
 jobs:
   build-windows-exe:
-    name: Build Windows one-file executable
+    name: Build Windows Executable
     runs-on: windows-latest
+    env:
+      RELEASE_TAG: ${{ github.ref_name || github.event.inputs.tag }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,41 +26,40 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install PyInstaller
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install pyinstaller
-      - name: Build one-file exe with PyInstaller
-        env:
-          RELEASE_TAG: ${{ github.ref_name }}
+          if (Test-Path requirements.txt) { pip install -r requirements.txt }
+
+      - name: Build with spec (Windows)
         run: |
-          # Force one-file exe for Windows releases
           py -3 -m pip install --upgrade pip
           py -3 -m pip install pyinstaller
-          py -3 -m PyInstaller --clean --noconfirm --onefile --name POsaver POsaver.py
+          # Use the provided spec to build on Windows
+          py -3 -m PyInstaller --clean --noconfirm POsaver.spec
 
-      - name: Package Windows exe
-        env:
-          RELEASE_TAG: ${{ github.ref_name }}
+      - name: Collect executable
         run: |
-          mkdir -Force artifacts
-          if (Test-Path -Path dist\POsaver.exe) {
-            Copy-Item -Path dist\POsaver.exe -Destination artifacts\POsaver.exe -Force
-          } elseif (Test-Path -Path dist\POsaver\POsaver.exe) {
-            Copy-Item -Path dist\POsaver\POsaver.exe -Destination artifacts\POsaver.exe -Recurse -Force
+          mkdir artifacts
+          if (Test-Path dist\POsaver.exe) {
+            Copy-Item dist\POsaver.exe artifacts\POsaver-$env:RELEASE_TAG-windows.exe
+          } elseif (Test-Path dist\POsaver\POsaver.exe) {
+            Copy-Item dist\POsaver\POsaver.exe artifacts\POsaver-$env:RELEASE_TAG-windows.exe
           }
-          $out = "POsaver-$env:RELEASE_TAG-windows.zip"
-          if (Test-Path -Path artifacts) { Compress-Archive -Path artifacts\* -DestinationPath $out -Force }
 
-      - name: Upload exe artifact
+      - name: Upload Windows executable
         uses: actions/upload-artifact@v4
         with:
           name: windows-exe
-          path: POsaver-${{ github.ref_name }}-windows.zip
+          path: artifacts/POsaver-${{ env.RELEASE_TAG }}-windows.exe
 
-  build-macos-exe:
-    name: Build macOS one-file executable
+  build-macos-app:
+    name: Build macOS App
     runs-on: macos-latest
+    env:
+      RELEASE_TAG: ${{ github.ref_name || github.event.inputs.tag }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -67,55 +69,58 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install PyInstaller
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install pyinstaller
-
-      - name: Build .app with PyInstaller (uses spec if present)
-        env:
-          RELEASE_TAG: ${{ github.ref_name }}
+      - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install pyinstaller
-          if [ -f POsaver.spec ]; then
-            python3 -m PyInstaller --clean --noconfirm POsaver.spec
-          else
-            # create a one-dir bundle and then convert to .app if needed
-            python3 -m PyInstaller --clean --noconfirm --onedir --name POsaver POsaver.py
-          fi
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Package macOS .app
-        env:
-          RELEASE_TAG: ${{ github.ref_name }}
+      - name: Build macOS app with spec (required)
+        run: |
+          set -e
+          echo "Checking for POsaver.spec in repo root"
+          ls -la POsaver.spec || (echo 'POsaver.spec not found' && exit 1)
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pyinstaller
+          echo "Running PyInstaller with spec"
+          python3 -m PyInstaller --clean --noconfirm POsaver.spec
+          echo "PyInstaller finished"
+
+      - name: Package .app as .zip
         run: |
           mkdir -p artifacts
-          if [ -d dist/POsaver.app ]; then
-            cp -R dist/POsaver.app artifacts/
-          elif [ -d dist/POsaver ]; then
-            cp -R dist/POsaver artifacts/POsaver.app || true
-          else
-            # fallback: copy whatever is in dist
-            cp -R dist/* artifacts/ || true
+          TAG="$RELEASE_TAG"
+          if [ -z "$TAG" ]; then
+            TAG="${GITHUB_SHA:0:7}"
           fi
-          cd artifacts || exit 0
-          zip -r ../POsaver-${RELEASE_TAG}-macos.zip . || true
+          if [ -d dist/POsaver.app ]; then
+            cp -R dist/POsaver.app artifacts/POsaver-${TAG}.app
+            (cd artifacts && zip -r ../POsaver-${TAG}-macos.zip POsaver-${TAG}.app)
+          elif [ -d dist/POsaver ]; then
+            cp -R dist/POsaver artifacts/POsaver-${TAG}.app || true
+            (cd artifacts && zip -r ../POsaver-${TAG}-macos.zip POsaver-${TAG}.app)
+          else
+            echo "⚠️ No app bundle found in dist/"
+          fi
 
       - name: Upload macOS artifact
         uses: actions/upload-artifact@v4
         with:
-          name: macos-exe
-          path: POsaver-${{ github.ref_name }}-macos.zip
+          name: macos-app
+          path: artifacts/POsaver-${{ env.RELEASE_TAG }}-macos.zip
 
   create-release:
-    name: Create GitHub Release and attach artifacts
-    needs: [build-windows-exe, build-macos-exe]
+    name: Create GitHub Release
+    needs: [build-windows-exe, build-macos-app]
     runs-on: ubuntu-latest
+    env:
+      RELEASE_TAG: ${{ github.ref_name || github.event.inputs.tag }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Download windows artifact
+      - name: Download Windows artifact
         uses: actions/download-artifact@v4
         with:
           name: windows-exe
@@ -124,24 +129,15 @@ jobs:
       - name: Download macOS artifact
         uses: actions/download-artifact@v4
         with:
-          name: macos-exe
+          name: macos-app
           path: release-artifacts
 
       - name: Generate release notes
         id: notes
         run: |
-          # Prefer the pushed tag; fall back to workflow input if provided
-          if [ -n "${{ github.ref_name }}" ] && [[ "${{ github.ref }}" == refs/tags/* ]]; then
-            TAG=${{ github.ref_name }}
-          elif [ -n "${{ github.event.inputs.tag }}" ]; then
-            TAG=${{ github.event.inputs.tag }}
-          else
-            # fallback to latest tag
-            TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "${{ github.sha }}")
-          fi
-          echo "Using tag: $TAG"
+          TAG="$RELEASE_TAG"
           echo "## Changes in $TAG" > release_notes.md
-          git --no-pager log --pretty=format:"- %s (%h)" $TAG..HEAD >> release_notes.md || git --no-pager log -n 40 --pretty=format:"- %s (%h)" >> release_notes.md
+          git --no-pager log -n 20 --pretty=format:"- %s (%h)" >> release_notes.md
           echo "notes<<EOF" >> $GITHUB_OUTPUT
           cat release_notes.md >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -149,16 +145,10 @@ jobs:
       - name: Create GitHub Release and upload files
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ github.ref_name }}
-          name: ${{ github.ref_name }}
+          tag_name: ${{ env.RELEASE_TAG }}
+          name: Release ${{ env.RELEASE_TAG }}
+          body: ${{ steps.notes.outputs.notes }}
           files: |
             release-artifacts/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Optional: Publish to PyPI (if secret provided)
-        if: secrets.PYPI_API_TOKEN != ''
-        uses: pypa/gh-action-pypi-publish@v1.5.2
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}
