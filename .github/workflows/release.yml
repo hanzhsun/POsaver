@@ -95,10 +95,10 @@ jobs:
           fi
           if [ -d dist/POsaver.app ]; then
             cp -R dist/POsaver.app artifacts/POsaver-${TAG}.app
-            (cd artifacts && zip -r ../POsaver-${TAG}-macos.zip POsaver-${TAG}.app)
+            (cd artifacts && zip -r POsaver-${TAG}-macos.zip POsaver-${TAG}.app)
           elif [ -d dist/POsaver ]; then
             cp -R dist/POsaver artifacts/POsaver-${TAG}.app || true
-            (cd artifacts && zip -r ../POsaver-${TAG}-macos.zip POsaver-${TAG}.app)
+            (cd artifacts && zip -r POsaver-${TAG}-macos.zip POsaver-${TAG}.app)
           else
             echo "⚠️ No app bundle found in dist/"
           fi
