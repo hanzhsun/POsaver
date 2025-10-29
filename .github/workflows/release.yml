@@ -1,0 +1,173 @@
+name: Build and Release
+
+permissions:
+  contents: write
+
+on:
+  push:
+    tags:
+      - 'v*'
+    workflow_dispatch:
+      inputs:
+        tag:
+          description: 'Tag to release'
+          required: true
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to release'
+        required: true
+
+jobs:
+  build-windows-exe:
+    name: Build Windows Executable
+    runs-on: windows-latest
+    env:
+      # Only accept manual input tag (workflow_dispatch). No fallback to ref_name.
+      RELEASE_TAG: ${{ github.event.inputs.tag }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller
+          # Ensure runtime dependencies are installed so PyInstaller can detect them
+          if (Test-Path requirements.txt) { pip install -r requirements.txt } else { pip install requests ebooklib beautifulsoup4 lxml }
+
+      - name: Build with spec (Windows)
+        run: |
+          py -3 -m pip install --upgrade pip
+          py -3 -m pip install pyinstaller
+          # Use the provided spec to build on Windows
+          py -3 -m PyInstaller --clean --noconfirm POsaver.spec
+
+      - name: Collect executable
+        run: |
+          mkdir artifacts
+          if (Test-Path dist\POsaver.exe) {
+            Copy-Item dist\POsaver.exe artifacts\POsaver-$env:RELEASE_TAG-windows.exe
+          } elseif (Test-Path dist\POsaver\POsaver.exe) {
+            Copy-Item dist\POsaver\POsaver.exe artifacts\POsaver-$env:RELEASE_TAG-windows.exe
+          }
+
+      - name: Upload Windows executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-exe
+          path: artifacts/POsaver-${{ env.RELEASE_TAG }}-windows.exe
+
+  build-macos-app:
+    name: Build macOS App
+    runs-on: macos-latest
+    env:
+      # Only accept manual input tag (workflow_dispatch). No fallback to ref_name.
+      RELEASE_TAG: ${{ github.event.inputs.tag }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pyinstaller
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Build macOS app with spec (required)
+        run: |
+          set -e
+          echo "Checking for POsaver.spec in repo root"
+          ls -la POsaver.spec || (echo 'POsaver.spec not found' && exit 1)
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pyinstaller
+          # Ensure runtime dependencies are present so PyInstaller includes them
+          if [ -f requirements.txt ]; then python3 -m pip install -r requirements.txt; else python3 -m pip install requests ebooklib beautifulsoup4 lxml; fi
+          echo "Running PyInstaller with spec"
+          python3 -m PyInstaller --clean --noconfirm POsaver.spec
+          echo "PyInstaller finished"
+
+      - name: Package .app as .zip
+        run: |
+          mkdir -p artifacts
+          TAG="$RELEASE_TAG"
+          if [ -z "$TAG" ]; then
+            TAG="${GITHUB_SHA:0:7}"
+          fi
+          if [ -d dist/POsaver.app ]; then
+            cp -R dist/POsaver.app artifacts/POsaver-${TAG}.app
+            (cd artifacts && zip -r POsaver-${TAG}-macos.zip POsaver-${TAG}.app)
+          elif [ -d dist/POsaver ]; then
+            cp -R dist/POsaver artifacts/POsaver-${TAG}.app || true
+            (cd artifacts && zip -r POsaver-${TAG}-macos.zip POsaver-${TAG}.app)
+          else
+            echo "⚠️ No app bundle found in dist/"
+          fi
+
+      - name: Upload macOS artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-app
+          path: artifacts/POsaver-${{ env.RELEASE_TAG }}-macos.zip
+
+  create-release:
+    name: Create GitHub Release
+    needs: [build-windows-exe, build-macos-app]
+    runs-on: ubuntu-latest
+    env:
+      # Only accept manual input tag (workflow_dispatch). No fallback to ref_name.
+      RELEASE_TAG: ${{ github.event.inputs.tag }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download Windows artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: windows-exe
+          path: release-artifacts
+
+      - name: Download macOS artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: macos-app
+          path: release-artifacts
+
+      - name: Generate release notes file
+        run: |
+          TAG="$RELEASE_TAG"
+          echo "## Changes in $TAG" > release_notes.md
+          git --no-pager log -n 20 --pretty=format:"- %s (%h)" >> release_notes.md
+
+      - name: Read release notes into output
+        id: notes
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const notes = fs.existsSync('release_notes.md') ? fs.readFileSync('release_notes.md','utf8') : '';
+            return { notes };
+
+      - name: Create GitHub Release and upload files
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.RELEASE_TAG }}
+          name: Release ${{ env.RELEASE_TAG }}
+          body: ${{ steps.notes.outputs.notes }}
+          files: |
+            release-artifacts/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
