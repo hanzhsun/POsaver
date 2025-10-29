@@ -1,6 +1,5 @@
 *.conf
 *.ipynb
 *.azw3
-*.txt
 build/
 dist/
